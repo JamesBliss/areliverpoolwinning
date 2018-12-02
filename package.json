@@ -1,0 +1,21 @@
+{
+  "name": "are-liverpool-winning",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "now-build": "next build && next export -o dist",
+    "dev": "next -p 7777"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.1.22",
+    "graphql": "^14.0.2",
+    "graphql-tag": "^2.10.0",
+    "next": "^7.0.2",
+    "next-with-apollo": "^3.3.0",
+    "react": "^16.6.3",
+    "react-apollo": "^2.3.2",
+    "react-dom": "^16.6.3",
+    "styled-components": "^4.1.2"
+  }
+}

@@ -1,0 +1,18 @@
+# generic
+.env
+.DS_STORE
+app/node_modules
+app/build
+app/.module-cache
+*.log*
+_nogit
+.next
+
+# Logs
+app/logs
+*.log
+npm-debug.log*
+
+# Dependency directory
+app/node_modules
+node_modules
