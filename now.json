@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "areliverpoolwinning",
+  "alias": "areliverpoolwinning.com",
   "builds": [
   	{ "src": "package.json", "use": "@now/static-build" }
   ]
