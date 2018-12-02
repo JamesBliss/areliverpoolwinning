@@ -26,41 +26,46 @@ const query = gql`
     nextMatch(
       id: $id
     ) {
-      id
       status
       score {
         winner
-        fullTime {
-          homeTeam
-          awayTeam
-        }
-        halfTime {
-          homeTeam
-          awayTeam
-        }
+      }
+      homeTeam {
+        name
+      }
+      awayTeam {
+        name
       }
     }
   }
 `;
 
 const match = () => (
-  <Query query={query} variables={ { id: 61 } } pollInterval={10000} >
+  <Query query={query} variables={ { id: 64 } } pollInterval={10000} >
     {({ loading, error, data }) => {
 
-      if (loading) return <p>Loading...</p>;
-      if (error) return <p>Error :(</p>;
+      if (loading) return <Wrapper><Text>🏗</Text></Wrapper>;
+      if (error) return <Wrapper><Text>☠️</Text></Wrapper>;
 
-      const {status, score} = data.nextMatch;
+      const {status, score, homeTeam, awayTeam} = data.nextMatch;
 
       if (status === 'SCHEDULED') {
         return <Wrapper><Text>⏳</Text></Wrapper>
       }
 
-      if (status === 'FINISHED') {
-        return <Wrapper><Text>`🎉 {score.winner}</Text></Wrapper>
+      if (score.winner === 'DRAW') {
+        return <Wrapper><Text>😐</Text></Wrapper>
       }
 
-      return <Wrapper><Text>⚽️ {status === 'PAUSED' ? 'Half time' : 'Playing'} - {score.winner.toLowerCase()}</Text></Wrapper>
+      if (score.winner === 'HOME_TEAM' && homeTeam.toLowerCase().indexOf('liverpool') > -1) {
+        return <Wrapper><Text>🙂</Text></Wrapper>
+      }
+
+      if (score.winner === 'AWAY_TEAM' && awayTeam.toLowerCase().indexOf('liverpool') > -1) {
+        return <Wrapper><Text>🙂</Text></Wrapper>
+      }
+
+      return <Wrapper><Text>😟</Text></Wrapper>
     }}
   </Query>
 );
