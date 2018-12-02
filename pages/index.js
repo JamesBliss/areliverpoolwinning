@@ -58,14 +58,14 @@ const match = () => (
       }
 
       if (score.winner === 'HOME_TEAM' && homeTeam.name.toLowerCase().indexOf('liverpool') > -1) {
-        return <Wrapper><Text>🙂</Text></Wrapper>
+        return <Wrapper><Text>😁</Text></Wrapper>
       }
 
       if (score.winner === 'AWAY_TEAM' && awayTeam.name.toLowerCase().indexOf('liverpool') > -1) {
-        return <Wrapper><Text>🙂</Text></Wrapper>
+        return <Wrapper><Text>😁</Text></Wrapper>
       }
 
-      return <Wrapper><Text>😟</Text></Wrapper>
+      return <Wrapper><Text>😭</Text></Wrapper>
     }}
   </Query>
 );
