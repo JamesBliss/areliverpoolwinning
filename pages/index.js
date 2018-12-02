@@ -41,7 +41,7 @@ const query = gql`
 `;
 
 const match = () => (
-  <Query query={query} variables={ { id: 64 } } pollInterval={10000} >
+  <Query query={query} variables={ { id: 64 } } pollInterval={60000} >
     {({ loading, error, data }) => {
 
       if (loading) return <Wrapper><Text>🏗</Text></Wrapper>;
