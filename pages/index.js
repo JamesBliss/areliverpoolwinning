@@ -57,11 +57,11 @@ const match = () => (
         return <Wrapper><Text>😐</Text></Wrapper>
       }
 
-      if (score.winner === 'HOME_TEAM' && homeTeam.toLowerCase().indexOf('liverpool') > -1) {
+      if (score.winner === 'HOME_TEAM' && homeTeam.name.toLowerCase().indexOf('liverpool') > -1) {
         return <Wrapper><Text>🙂</Text></Wrapper>
       }
 
-      if (score.winner === 'AWAY_TEAM' && awayTeam.toLowerCase().indexOf('liverpool') > -1) {
+      if (score.winner === 'AWAY_TEAM' && awayTeam.name.toLowerCase().indexOf('liverpool') > -1) {
         return <Wrapper><Text>🙂</Text></Wrapper>
       }
 
