@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "next -p 7777",
     "build": "next build",
-    "init": "next start",
-    "start": "npm run build && npm run init",
-    "dev": "next -p 7777"
+    "start": "next start -p $PORT",
+    "heroku-postbuild": "npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "apollo-boost": "^0.1.22",
