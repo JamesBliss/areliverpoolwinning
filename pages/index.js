@@ -2,6 +2,8 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
+import moment from 'moment';
+import Head from 'next/head';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -10,7 +12,14 @@ export const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  background: #c8c8c8;
+  background: #eaeaea;
+`;
+
+export const Emo = styled.span`
+  position: relative;
+  z-index: 5;
+  font-size: 8vmin;
+  line-height: 1.1em;
 `;
 
 export const Text = styled.span`
@@ -18,7 +27,15 @@ export const Text = styled.span`
   z-index: 5;
   font-size: 8vmin;
   line-height: 1.1em;
+  color: #333;
+  font-weight: 300;
 `;
+
+export const Small = styled.span`
+  font-size: 0.6em;
+  line-height: 0.2;
+`;
+
 
 //
 const query = gql`
@@ -27,6 +44,8 @@ const query = gql`
       id: $id
     ) {
       status
+      matchday
+      utcDate
       score {
         winner
       }
@@ -40,32 +59,97 @@ const query = gql`
   }
 `;
 
+// helper
+const isLiverpool = (name) => {
+  return name.toLowerCase().indexOf('liverpool') > -1;
+}
+
+const howLong = (time) => {
+  const eventTime = moment.utc(time).unix();
+  const currentTime = moment().unix();
+  const diffTime = eventTime - currentTime;
+  const duration = moment.duration(diffTime * 1000, 'milliseconds')
+
+  const { days, hours, minutes } = duration._data;
+
+  return `
+    ${ days === 1 ? `${ days } day ` : '' }
+    ${ days > 1 ? `${ days } days ` : '' }
+
+    ${ hours === 1 ? `${ hours } hour ` : '' }
+    ${ hours > 1 ? `${ hours } hours ` : '' }
+
+    ${ minutes === 1 ? `${ minutes } minute` : '' }
+    ${ minutes > 1 ? `${ minutes } minutes ` : '' }
+  `;
+}
+
 const match = () => (
-  <Query query={query} variables={ { id: 64 } } pollInterval={60000} >
-    {({ loading, error, data }) => {
+  <Query query={query} variables={ { id: 64 } } pollInterval={5000}>
+    {({ loading, error, data, networkStatus }) => {
 
-      if (loading) return <Wrapper><Text>🏗</Text></Wrapper>;
-      if (error) return <Wrapper><Text>☠️</Text></Wrapper>;
+      if (loading) return <Wrapper><Emo>⏳</Emo></Wrapper>;
+      if (error) return <Wrapper><Emo>☠️</Emo></Wrapper>;
 
-      const {status, score, homeTeam, awayTeam} = data.nextMatch;
+      const { status, score, homeTeam, awayTeam, utcDate } = data.nextMatch;
+
 
       if (status === 'SCHEDULED') {
-        return <Wrapper><Text>⏳</Text></Wrapper>
+        return (
+          <Wrapper>
+            <Head>
+              <title>
+                {`Next match in ${ howLong(utcDate) }`}
+              </title>
+              <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/time.ico"></link>
+            </Head>
+            <Text>
+              { homeTeam.name }<br />
+              { awayTeam.name }<br />
+              <Small>
+                {`in ${ howLong(utcDate) }`}
+              </Small>
+            </Text>
+          </Wrapper>
+        )
       }
 
       if (score.winner === 'DRAW') {
-        return <Wrapper><Text>😐</Text></Wrapper>
+        return (
+          <Wrapper>
+            <Head>
+              <title>😐</title>
+              <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/neutral.ico"></link>
+            </Head>
+            <Emo>😐</Emo>
+          </Wrapper>
+        );
       }
 
-      if (score.winner === 'HOME_TEAM' && homeTeam.name.toLowerCase().indexOf('liverpool') > -1) {
-        return <Wrapper><Text>😁</Text></Wrapper>
+      if (
+        (score.winner === 'HOME_TEAM' && isLiverpool(homeTeam.name)) ||
+        (score.winner === 'AWAY_TEAM' && isLiverpool(awayTeam.name))
+      ) {
+        return (
+          <Wrapper>
+            <Head>
+              <title>😁</title>
+              <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/happy.ico"></link>
+            </Head>
+            <Emo>😁</Emo>
+          </Wrapper>
+        );
       }
 
-      if (score.winner === 'AWAY_TEAM' && awayTeam.name.toLowerCase().indexOf('liverpool') > -1) {
-        return <Wrapper><Text>😁</Text></Wrapper>
-      }
-
-      return <Wrapper><Text>😭</Text></Wrapper>
+      return (
+        <Wrapper>
+          <Head>
+            <title>😭</title>
+            <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/sad.ico"></link>
+          </Head>
+          <Emo>😭</Emo>
+        </Wrapper>
+      );
     }}
   </Query>
 );
