@@ -90,17 +90,8 @@ const match = () => (
           <Wrapper>
             <Head>
               <title>{`Next match in ${howLong(utcDate)}`}</title>
-              <meta property='og:site_name' content='areliverpoolwinning' />
-              <meta property='description' content='Find out if liverpool are winning or not!' />
-              <meta property='twitter:site' content='@LushLtd' />
-              <meta property='twitter:card' content='summary_large_image' />
-              <meta property='twitter:title' content='areliverpoolwinning?' />
-              <meta property='twitter:image' content={ `https://via.placeholder.com/1200x675?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(utcDate) }` } />
-              <meta property='og:description' content='Find out if liverpool are winning or not!' />
-              <meta property='og:title' content='areliverpoolwinning?' />
-              <meta property='og:type' content='website' />
-              <meta property='og:url' content='areliverpoolwinning.com' />
-              <meta property='og:image' content={ `https://via.placeholder.com/1200x628?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(utcDate) }` } />
+              <meta property='twitter:image' content={ `https://via.placeholder.com/1200x675/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(utcDate) }` } />
+              <meta property='og:image' content={ `https://via.placeholder.com/1200x628/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(utcDate) }` } />
               <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/time.ico"></link>
             </Head>
             <Text>
