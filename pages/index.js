@@ -25,7 +25,7 @@ export const Emo = styled.span`
 export const Text = styled.span`
   position: relative;
   z-index: 5;
-  font-size: 8vmin;
+  font-size: 12vmin;
   line-height: 1.1em;
   color: #333;
   font-weight: 300;
@@ -59,7 +59,7 @@ const query = gql`
   }
 `;
 
-// helper
+// helpers
 const isLiverpool = (name) => {
   return name.toLowerCase().indexOf('liverpool') > -1;
 }
