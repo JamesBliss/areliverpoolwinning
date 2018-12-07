@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "now-build": "next build && next export -o dist",
+    "build": "next build",
+    "start": "next start",
     "dev": "next -p 7777"
   },
   "dependencies": {
