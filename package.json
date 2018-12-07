@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "next -p 7777",
     "build": "next build",
-    "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build",
+    "start": "next start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
