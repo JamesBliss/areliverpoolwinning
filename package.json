@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "now-build": "next build && next export -o dist",
-    "dev": "next -p 7777"
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
     "apollo-boost": "^0.1.22",
