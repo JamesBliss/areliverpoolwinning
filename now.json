@@ -1,7 +1,10 @@
 {
-  "version": 1,
+  "version": 2,
   "name": "areliverpoolwinning",
   "alias": "areliverpoolwinning.com",
+  "builds": [
+    { "src": "next.config.js", "use": "@now/next" }
+  ],
   "env": {
     "GA_KEY": "@ga_key"
   }
