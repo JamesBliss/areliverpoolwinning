@@ -2,8 +2,13 @@
   "version": 2,
   "name": "areliverpoolwinning",
   "alias": "areliverpoolwinning.com",
+  "regions": ["bru"],
   "builds": [
-    { "src": "next.config.js", "use": "@now/next" }
+    {
+      "src": "package.json",
+      "use": "@now/next",
+      "config": { "maxLambdaSize": "10mb" }
+    }
   ],
   "env": {
     "GA_KEY": "@ga_key"
