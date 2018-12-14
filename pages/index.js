@@ -2,7 +2,6 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import styled from "styled-components";
-import moment from 'moment';
 import Head from 'next/head';
 
 export const Wrapper = styled.div`
@@ -46,6 +45,11 @@ const query = gql`
       status
       matchday
       utcDate
+      time {
+        days
+        hours
+        minutes
+      }
       score {
         winner
       }
@@ -64,14 +68,7 @@ const isLiverpool = (name) => {
   return name.toLowerCase().indexOf('liverpool') > -1;
 }
 
-const howLong = (time) => {
-  const eventTime = moment.utc(time).unix();
-  const currentTime = moment().unix();
-  const diffTime = eventTime - currentTime;
-  const duration = moment.duration(diffTime * 1000, 'milliseconds')
-
-  const { days, hours, minutes } = duration._data;
-
+const howLong = ({ days, hours, minutes}) => {
   return `${ days === 1 ? `${ days } day ` : '' }${ days > 1 ? `${ days } days ` : '' }${ hours === 1 ? `${ hours } hour ` : '' }${ hours > 1 ? `${ hours } hours ` : '' }${ minutes === 1 ? `${ minutes } minute` : '' }${ minutes > 1 ? `${ minutes } minutes ` : '' }`;
 }
 
@@ -82,23 +79,23 @@ const match = () => (
       if (loading) return <Wrapper><Emo>⏳</Emo></Wrapper>;
       if (error) return <Wrapper><Emo>☠️</Emo></Wrapper>;
 
-      const { status, score, homeTeam, awayTeam, utcDate } = data.nextMatch;
+      const { status, score, homeTeam, awayTeam, utcDate, time } = data.nextMatch;
 
 
       if (status === 'SCHEDULED') {
         return (
           <Wrapper>
             <Head>
-              <title>{`Next match in ${howLong(utcDate)}`}</title>
-              <meta property='twitter:image' content={ `https://via.placeholder.com/1200x675/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(utcDate) }` } />
-              <meta property='og:image' content={ `https://via.placeholder.com/1200x628/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(utcDate) }` } />
+              <title>{`Next match in ${howLong(time)}`}</title>
+              <meta property='twitter:image' content={ `https://via.placeholder.com/1200x675/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(time) }` } />
+              <meta property='og:image' content={ `https://via.placeholder.com/1200x628/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(time) }` } />
               <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/time.ico"></link>
             </Head>
             <Text>
               { homeTeam.name }<br />
               { awayTeam.name }<br />
               <Small>
-                {`in ${ howLong(utcDate) }`}
+                {`in ${ howLong(time) }`}
               </Small>
             </Text>
           </Wrapper>
