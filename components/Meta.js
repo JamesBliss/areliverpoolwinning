@@ -25,7 +25,7 @@ const Meta = () => (
     <link rel="icon" type="image/png" sizes="192x192"  href="https://res.cloudinary.com/jamesbliss/image/upload/v1543765247/android-icon-192x192.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1543765247/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="96x96" href="https://res.cloudinary.com/jamesbliss/image/upload/v1543765247/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1543765247/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1543765247/favicon-16x16.png" />n
 
   </Head>
 );
