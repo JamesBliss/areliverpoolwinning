@@ -1,7 +1,7 @@
 import App, { Container } from 'next/app';
 import { ApolloProvider } from 'react-apollo';
 
-import Page from '../components/Page';
+import Page from '../components/global/Page';
 import withApolloClient from '../lib/with-apollo-client'
 
 class MyApp extends App {

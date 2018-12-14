@@ -24,7 +24,7 @@ const query = gql`
   }
 `;
 
-class Team extends React.Component {
+class Team extends React.PureComponent {
   render() {
     const { team } = this.props;
 
@@ -52,12 +52,6 @@ class Team extends React.Component {
         }}
       </Query>
     )
-
-    return (
-      <React.Fragment>
-        <span><img alt={ team.name } src={ crestUrl } /> { team.name }<br /></span>
-      </React.Fragment>
-    );
   }
 }
 
