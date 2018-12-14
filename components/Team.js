@@ -28,10 +28,8 @@ class Team extends React.Component {
   render() {
     const { team } = this.props;
 
-    console.log(team)
-
     return (
-      <Query query={query} variables={ { id: team.id } } pollInterval={5000}>
+      <Query query={query} variables={ { id: team.id } }>
         {({ loading, error, data }) => {
 
           if (loading) return <span>{ team.name }<br /></span>;
