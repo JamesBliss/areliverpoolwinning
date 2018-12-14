@@ -87,8 +87,6 @@ const match = () => (
           <Wrapper>
             <Head>
               <title>{`Next match in ${howLong(time)}`}</title>
-              <meta property='twitter:image' content={ `https://via.placeholder.com/1200x675/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(time) }` } />
-              <meta property='og:image' content={ `https://via.placeholder.com/1200x628/C8102E/FFFFFF?text=${ homeTeam.name } ${awayTeam.name} in ${ howLong(time) }` } />
               <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/time.ico"></link>
             </Head>
             <Text>
