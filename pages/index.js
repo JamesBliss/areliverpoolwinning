@@ -4,6 +4,10 @@ import gql from "graphql-tag";
 import styled from "styled-components";
 import Head from 'next/head';
 
+// team
+import Team from '../components/Team';
+
+// styled
 export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
@@ -35,7 +39,6 @@ export const Small = styled.span`
   line-height: 0.2;
 `;
 
-
 //
 const query = gql`
   query nextMatch($id: Int!) {
@@ -55,9 +58,11 @@ const query = gql`
       }
       homeTeam {
         name
+        id
       }
       awayTeam {
         name
+        id
       }
     }
   }
@@ -90,8 +95,10 @@ const match = () => (
               <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/time.ico"></link>
             </Head>
             <Text>
-              { homeTeam.name }<br />
-              { awayTeam.name }<br />
+
+              <Team team={homeTeam} />
+              <Team team={awayTeam} />
+
               <Small>
                 {`in ${ howLong(time) }`}
               </Small>
