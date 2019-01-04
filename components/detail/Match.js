@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Router from 'next/router'
+import Pressure from 'react-pressure';
 
 // comps
 import Team from './Team';
@@ -45,6 +46,12 @@ const query = gql`
 
 class Match extends React.PureComponent {
   render() {
+    const { force } = this.props;
+
+    if (force >= 0.5) {
+      Router.push('/');
+    }
+
     return (
       <Query query={query} variables={{ id: 64 }} pollInterval={5000}>
         {({ loading, error, data }) => {
@@ -66,4 +73,4 @@ class Match extends React.PureComponent {
   }
 }
 
-export default Match;
+export default Pressure(Match);
