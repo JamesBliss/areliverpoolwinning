@@ -1,7 +1,7 @@
 import React from 'react';
 
 // comps
-import Match from '../components/Match';
+import Match from '../components/home/Match';
 
 // comp
 const Home = () => (

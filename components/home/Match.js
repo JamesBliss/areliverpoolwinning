@@ -2,14 +2,17 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Head from 'next/head';
+import Pressure from 'react-pressure';
+import Router from 'next/router'
 
 // helpers
 import {
   isLiverpool,
   howLong
-} from '../lib/helpers';
+} from '../../lib/helpers';
 
 // comps
+import ProgressRing from '../global/ProgressCircle'
 import Team from './Team';
 
 // styled
@@ -47,6 +50,25 @@ const query = gql`
     }
   }
 `;
+
+const EmojiPressure = ({ children, pressing, force }) => {
+  if (force === 1) {
+    Router.push('/detail');
+  }
+
+  return (
+    <Emo>
+      <ProgressRing
+        radius={ 60 }
+        stroke={ 10 }
+        progress={ force * 100 }
+      />
+      <span>{children}</span>
+    </Emo>
+  );
+}
+
+const Emoji = Pressure(EmojiPressure);
 
 class Match extends React.PureComponent {
   render() {
@@ -88,7 +110,7 @@ class Match extends React.PureComponent {
                   <title>😐</title>
                   <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/neutral.ico"></link>
                 </Head>
-                <Emo>😐</Emo>
+                <Emoji>😐</Emoji>
               </Wrapper>
             );
           }
@@ -103,7 +125,7 @@ class Match extends React.PureComponent {
                   <title>😁</title>
                   <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/happy.ico"></link>
                 </Head>
-                <Emo>😁</Emo>
+                <Emoji>😁</Emoji>
               </Wrapper>
             );
           }
@@ -114,7 +136,7 @@ class Match extends React.PureComponent {
                 <title>😭</title>
                 <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1544193023/areliverpoolwinning/sad.ico"></link>
               </Head>
-              <Emo>😭</Emo>
+              <Emoji>😭</Emoji>
             </Wrapper>
           );
         }}

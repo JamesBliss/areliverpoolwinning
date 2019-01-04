@@ -13,9 +13,20 @@ export const Wrapper = styled.div`
 
 export const Emo = styled.span`
   position: relative;
+  display: inline-block;
   z-index: 5;
   font-size: 8vmin;
-  line-height: 1.1em;
+  line-height: 1em;
+  cursor: pointer;
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+
+
 `;
 
 export const Text = styled.span`

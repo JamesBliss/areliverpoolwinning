@@ -8,6 +8,15 @@ const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+
   body > div,
   body {
     height: 100%;
