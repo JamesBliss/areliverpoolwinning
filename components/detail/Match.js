@@ -46,11 +46,11 @@ const query = gql`
 
 class Match extends React.PureComponent {
   render() {
-    const { force } = this.props;
+    // const { force } = this.props;
 
-    if (force >= 0.5) {
-      Router.push('/');
-    }
+    // if (force >= 0.5) {
+    //   Router.push('/');
+    // }
 
     return (
       <Query query={query} variables={{ id: 64 }} pollInterval={5000}>
@@ -73,4 +73,4 @@ class Match extends React.PureComponent {
   }
 }
 
-export default Pressure(Match);
+export default Match;
