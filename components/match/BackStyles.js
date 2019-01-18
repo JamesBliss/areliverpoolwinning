@@ -18,7 +18,11 @@ export const Button = styled.button`
   align-content: center;
 
   svg {
-    margin: 5px 20px 0;
+    margin: 5px 10px 0;
+
+    @media(min-width: 620px) {
+      margin: 5px 20px 0;
+    }
   }
 
   &:before {
