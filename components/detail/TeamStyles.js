@@ -4,7 +4,10 @@ export const TeamName = styled('span')`
   display: flex;
   position: relative;
   align-items: center;
+  --safe-area-inset-left: env(safe-area-inset-left);
   padding: 0.2em 5em 0.2em 2.2em;
+  padding-left: calc(2.2em + var(--safe-area-inset-left));
+
   overflow: hidden;
   height: 100%;
   width: 100vw;
@@ -34,7 +37,7 @@ export const TeamName = styled('span')`
       display: block;
       position: absolute;
       top: 0;
-      left: 0.5em;
+      left: calc(0.5em + var(--safe-area-inset-left));
       background-image: url(${imageSrc});
       background-size: contain;
       background-position: center center;
