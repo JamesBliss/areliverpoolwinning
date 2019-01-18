@@ -17,6 +17,7 @@ export default class MyDocument extends Document {
         <Head>
           { this.props.styleTags }
           {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
           <script
             async
             src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
