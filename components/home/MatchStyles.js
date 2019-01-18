@@ -25,8 +25,6 @@ export const Emo = styled.span`
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
   }
-
-
 `;
 
 export const Text = styled.span`

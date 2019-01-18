@@ -53,7 +53,7 @@ const query = gql`
 
 const EmojiPressure = ({ children, pressing, force }) => {
   if (force === 1) {
-    Router.push('/detail');
+    Router.push('/match');
   }
 
   return (
