@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "now-build": "next build",
     "dev": "next",
     "build": "next build",
     "start": "next start"
