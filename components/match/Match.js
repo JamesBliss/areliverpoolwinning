@@ -57,7 +57,6 @@ class Match extends React.PureComponent {
 
           return (
             <Wrapper>
-              <Back minute={ minute } status={ status } />
               <Team id={homeTeam.id} team={homeTeam} score={score.fullTime.homeTeam} />
               <Team id={awayTeam.id} team={awayTeam} score={score.fullTime.awayTeam}/>
             </Wrapper>
