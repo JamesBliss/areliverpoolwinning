@@ -12,10 +12,12 @@ export const Button = styled.button`
   height: 60px;
   background: #333;
   color: #fff;
-  width: 100%;
-  display: flex;
   position: relative;
-  align-content: center;
+  outline-offset: -3px;
+  width: calc(100% - 10px);
+  display: block;
+  text-align: left;
+  margin: 5px 5px 0;
 
   svg {
     margin: 5px 10px 0;
@@ -34,4 +36,11 @@ export const Button = styled.button`
     width: ${ ({force}) => (`calc(${ force * 100 }%)`) };
     background: rgba(255, 255, 255, 0.2);
   }
+`;
+
+export const Time = styled.div`
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
 `;

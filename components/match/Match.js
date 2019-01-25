@@ -19,6 +19,7 @@ const query = gql`
     ) {
       id
       status
+      minute
       time {
         days
         hours
@@ -52,11 +53,11 @@ class Match extends React.PureComponent {
           if (loading) return null;
           if (error) return Router.push('/');
 
-          const { score, homeTeam, awayTeam } = data.nextMatch;
+          const { score, homeTeam, awayTeam, minute, status } = data.nextMatch;
 
           return (
             <Wrapper>
-              <Back />
+              <Back minute={ minute } status={ status } />
               <Team id={homeTeam.id} team={homeTeam} score={score.fullTime.homeTeam} />
               <Team id={awayTeam.id} team={awayTeam} score={score.fullTime.awayTeam}/>
             </Wrapper>

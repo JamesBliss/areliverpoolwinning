@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-  background: #eaeaea;
+  background: #333;
 
   display: flex;
   flex-direction: column;
