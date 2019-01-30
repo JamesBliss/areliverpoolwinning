@@ -81,7 +81,6 @@ class Match extends React.PureComponent {
 
           const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
 
-
           if (status === 'SCHEDULED') {
             return (
               <Wrapper>

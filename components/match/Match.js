@@ -47,7 +47,7 @@ const query = gql`
 class Match extends React.PureComponent {
   render() {
     return (
-      <Query query={query} variables={{ id: 64 }} pollInterval={5000}>
+      <Query query={query} fetchPolicy='network-only' variables={{ id: 64 }} pollInterval={5000}>
         {({ loading, error, data }) => {
 
           if (loading) return null;
