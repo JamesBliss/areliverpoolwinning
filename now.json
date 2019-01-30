@@ -6,7 +6,7 @@
   "builds": [
     {
       "src": "package.json",
-      "use": "@now/next",
+      "use": "@now/static-build",
       "config": { "maxLambdaSize": "20mb" }
     }
   ],
