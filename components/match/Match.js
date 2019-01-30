@@ -2,16 +2,16 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-// comps
+// // comps
 import Team from './Team';
-import Back from './Back';
+// import Back from './Back';
 
 // styled
 import {
   Wrapper
 } from './MatchStyles';
 
-//
+
 const query = gql`
   query nextMatch($id: Int!) {
     nextMatch(
@@ -55,9 +55,11 @@ class Match extends React.PureComponent {
 
           const { score, homeTeam, awayTeam, minute, status } = data.nextMatch;
 
+          console.log(data)
+
           return (
             <Wrapper>
-              <Back minute={ minute } status={ status } />
+              {/* <Back minute={ minute } status={ status } /> */}
               <Team id={homeTeam.id} team={homeTeam} score={score.fullTime.homeTeam} />
               <Team id={awayTeam.id} team={awayTeam} score={score.fullTime.awayTeam}/>
             </Wrapper>
