@@ -22,7 +22,7 @@ const Back = ({ force, minute, status }) => {
           <span>{ status }</span>
         ) }
         { status === 'IN_PLAY' && (
-          <span>{ `${minute}'` }</span>
+          <span>PLAYING</span>
         ) }
       </Time>
 
