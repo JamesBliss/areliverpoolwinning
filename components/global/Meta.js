@@ -8,10 +8,12 @@ const Meta = () => (
     <meta property='twitter:site' content='@thejamesbliss' />
     <meta property='twitter:card' content='summary_large_image' />
     <meta property='twitter:title' content='areliverpoolwinning?' />
+    <meta property='twitter:image' content='https://res.cloudinary.com/jamesbliss/image/upload/v1550847183/areliverpoolwinning/sharing/twitter.png' />
     <meta property='og:description' content='Find out if liverpool are winning or not!' />
     <meta property='og:title' content='areliverpoolwinning?' />
     <meta property='og:type' content='website' />
     <meta property='og:url' content='https://areliverpoolwinning.com' />
+    <meta property='og:image' content='https://res.cloudinary.com/jamesbliss/image/upload/v1550847183/areliverpoolwinning/sharing/facebook.png' />
 
     <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/logo/favicon.ico"></link>
     <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547822257/areliverpoolwinning/logo/apple-touch-icon.png" />
