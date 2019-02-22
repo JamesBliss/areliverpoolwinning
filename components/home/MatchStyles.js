@@ -11,20 +11,26 @@ export const Wrapper = styled.div`
   background: #eaeaea;
 `;
 
-export const Emo = styled.span`
+export const Emo = styled.div`
   position: relative;
   display: inline-block;
   z-index: 5;
-  font-size: 8vmin;
-  line-height: 1em;
+  line-height: 0;
+  font-size: 20px;
+  font-size: 25vmin;
   cursor: pointer;
 
-  span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
+  @media(min-width: 620px) {
+    font-size: 20vmin;
   }
+`;
+
+export const FaceWrapper = styled.div`
+  line-height: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
 `;
 
 export const Text = styled.span`
@@ -39,4 +45,15 @@ export const Text = styled.span`
 export const Small = styled.span`
   font-size: 0.6em;
   line-height: 0;
+`;
+
+export const SrOnly = styled.span`
+  border: none;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
 `;

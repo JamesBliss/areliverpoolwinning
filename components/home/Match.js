@@ -14,13 +14,16 @@ import {
 // comps
 import ProgressRing from '../global/ProgressCircle'
 import Team from './Team';
+import Face from '../global/Face';
 
 // styled
 import {
   Wrapper,
   Emo,
+  FaceWrapper,
   Text,
-  Small
+  Small,
+  SrOnly
 } from './MatchStyles';
 
 //
@@ -55,15 +58,13 @@ const EmojiPressure = ({ children, pressing, force }) => {
   if (force === 1) {
     Router.push('/match');
   }
-
   return (
     <Emo>
-      <ProgressRing
-        radius={ 60 }
-        stroke={ 10 }
-        progress={ force * 100 }
-      />
-      <span>{children}</span>
+      <ProgressRing progress={ force * 100 } />
+      <FaceWrapper>
+        <Face emotion={children} />
+      </FaceWrapper>
+      <SrOnly>{children}</SrOnly>
     </Emo>
   );
 }
@@ -74,7 +75,7 @@ class Match extends React.PureComponent {
   render() {
     return (
       <Query query={ query } variables={{ id: 64 }} pollInterval={5000}>
-        {({ loading, error, data }) => {
+        {({ loading, error }) => {
 
           if (loading) return <Wrapper><Emo>⏳</Emo></Wrapper>;
           if (error) return <Wrapper><Emo>☠️</Emo></Wrapper>;
