@@ -75,10 +75,10 @@ class Match extends React.PureComponent {
   render() {
     return (
       <Query query={ query } variables={{ id: 64 }} pollInterval={5000}>
-        {({ loading, error }) => {
+        {({ data, loading, error }) => {
 
-          if (loading) return <Wrapper><Emo>⏳</Emo></Wrapper>;
-          if (error) return <Wrapper><Emo>☠️</Emo></Wrapper>;
+            if (loading) return <Wrapper><Emo>⏳</Emo></Wrapper>;
+            if (error) return <Wrapper><Emo>☠️</Emo></Wrapper>;
 
           const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
 
