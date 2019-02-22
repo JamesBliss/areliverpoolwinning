@@ -9,7 +9,8 @@ export const TeamName = styled('span')`
   padding-left: calc(2.2em + var(--safe-area-inset-left));
 
   overflow: hidden;
-  height: 100%;
+  flex: 1 0 auto;
+  height: auto;
   width: 100vw;
   z-index: 5;
   font-size: 12vmin;
