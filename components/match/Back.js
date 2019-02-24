@@ -7,7 +7,7 @@ import { Button, Time } from './BackStyles';
 
 // comp
 const Back = ({ force, minute, status }) => {
-  if (force >= 0.5) {
+  if (force >= 0.2) {
     Router.push('/');
   }
 
