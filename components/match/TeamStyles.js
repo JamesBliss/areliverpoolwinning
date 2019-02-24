@@ -8,6 +8,10 @@ export const TeamName = styled('span')`
   padding: 0.2em 5em 0.2em 2.2em;
   padding-left: calc(2.2em + var(--safe-area-inset-left));
 
+  @media (min-width: 768px) {
+    padding-left: 2.2em;
+  }
+
   overflow: hidden;
   flex: 1 0 auto;
   height: auto;
@@ -20,10 +24,12 @@ export const TeamName = styled('span')`
 
   border-top: 5px solid #333;
   border-bottom: 2.5px solid #333;
+
   & + ${() => TeamName} {
     border-top: 2.5px solid #333;
     border-bottom: 5px solid #333;
   }
+
   border-right: 5px solid #333;
   border-left: 5px solid #333;
 
@@ -39,6 +45,11 @@ export const TeamName = styled('span')`
       position: absolute;
       top: 0;
       left: calc(0.5em + var(--safe-area-inset-left));
+
+      @media (min-width: 768px) {
+        left: 0.5em;
+      }
+
       background-image: url(${imageSrc});
       background-size: contain;
       background-position: center center;
