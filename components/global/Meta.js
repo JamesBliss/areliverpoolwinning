@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 const Meta = () => (
   <Head>
-    <title>Are Liverpool winnning?</title>
+    <title>Are Liverpool winning?</title>
     <meta property='og:site_name' content='areliverpoolwinning' />
     <meta property='description' content='Find out if Liverpool are winning or not!' />
     <meta property='twitter:site' content='@thejamesbliss' />
