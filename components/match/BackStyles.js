@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 // styled
-export const Button = styled.button`
+export const Button = styled.a`
   box-sizing: border-box;
   -webkit-appearance: none;
   cursor: pointer;
@@ -12,6 +12,7 @@ export const Button = styled.button`
   height: 60px;
   background: #333;
   color: #fff;
+  transition: background 0.2s;
   position: relative;
   outline-offset: -3px;
   width: calc(100% - 10px);
@@ -20,11 +21,17 @@ export const Button = styled.button`
   margin: 5px 5px 0;
 
   svg {
-    margin: 5px 10px 0;
+    height: 100%;
+    margin: 0 10px;
 
     @media(min-width: 620px) {
-      margin: 5px 20px 0;
+      margin: 0 20px;
     }
+  }
+
+  &:hover {
+    transition: background 0.2s;
+    background: rgba(255, 255, 255, 0.2);
   }
 
   &:before {
