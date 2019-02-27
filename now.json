@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "areliverpoolwinning",
-  "alias": "areliverpoolwinning.com",
+  "alias": "www.areliverpoolwinning.com",
   "regions": ["bru", "bru1"],
   "builds": [
     {
@@ -10,6 +10,9 @@
       "config": { "maxLambdaSize": "20mb" }
     }
   ],
+  "routes": [
+    { "src": "/(.*)", "status": 301, "headers": { "Location": "https://areliverpoolwinning.com/$1" }}
+ ],
   "env": {
     "GA_KEY": "@ga_key"
   }
