@@ -6,9 +6,11 @@ import Pressure from 'react-pressure';
 import Router from 'next/router'
 
 // helpers
+
 import {
   isLiverpool,
-  howLong
+  howLong,
+  isBrowser
 } from '../../lib/helpers';
 
 // comps
@@ -54,15 +56,17 @@ const query = gql`
   }
 `;
 
-const EmojiPressure = ({ children, pressing, force }) => {
+const EmojiPressure = ({ children, pressing, force, ...rest }) => {
   if (force === 1) {
+    if (isBrowser) window.ma.trackEvent('Event', 'Pressure', 'force');
     Router.push('/match');
   }
+
   return (
     <Emo>
       <ProgressRing progress={ force * 100 } />
       <FaceWrapper>
-        <Face emotion={children} />
+        <Face emotion={ children } { ...rest } />
       </FaceWrapper>
       <SrOnly>{children}</SrOnly>
     </Emo>
@@ -77,8 +81,17 @@ class Match extends React.PureComponent {
       <Query query={ query } variables={{ id: 64 }} pollInterval={5000}>
         {({ data, loading, error }) => {
 
-            if (loading) return <Wrapper><Emo>⏳</Emo></Wrapper>;
-            if (error) return <Wrapper><Emo>☠️</Emo></Wrapper>;
+          if (loading) {
+            return (
+              <Wrapper><Emoji animationName='rotate' /></Wrapper>
+            )
+          };
+
+          if (error) {
+            return (
+              <Wrapper><Emoji>😵</Emoji></Wrapper>
+            );
+          }
 
           const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
 

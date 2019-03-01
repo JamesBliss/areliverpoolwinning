@@ -1,12 +1,14 @@
 import React from 'react';
 import Router from 'next/router'
 
+// helpers
+import { isBrowser } from '../../lib/helpers';
+
 // components
 import GlobalStyles from './Styles';
 import Meta from './Meta';
-import * as gtag from '../../lib/gtag'
 
-Router.events.on('routeChangeComplete', url => gtag.pageview(url))
+Router.events.on('routeChangeComplete', url => isBrowser(window.ma.trackEvent('Event', 'navigate', `pageview--${url}`)));
 
 class Page extends React.Component {
   render() {
@@ -14,7 +16,7 @@ class Page extends React.Component {
       <React.Fragment>
         <GlobalStyles />
         <Meta />
-        {this.props.children}
+        { this.props.children }
       </React.Fragment>
     );
   }

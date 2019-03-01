@@ -1,7 +1,7 @@
 import Document, { Head, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-import { GA_TRACKING_ID } from '../lib/gtag'
+import TrackingCode from '../lib/minimal-ga';
 
 export default class MyDocument extends Document {
   static getInitialProps({ renderPage }) {
@@ -16,27 +16,17 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           { this.props.styleTags }
-          {/* Global Site Tag (gtag.js) - Google Analytics */}
           <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
-          <script
-            async
-            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-          />
-          <script
-            dangerouslySetInnerHTML={{
-              __html: `
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_TRACKING_ID}');
-              `
-            }}
-          />
         </Head>
         <body>
           <Main />
           <script src='https://cdn.polyfill.io/v2/polyfill.min.js' />
           <NextScript />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: TrackingCode
+            }}
+          />
         </body>
       </html>
     );

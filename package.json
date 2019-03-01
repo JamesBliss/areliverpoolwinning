@@ -22,5 +22,8 @@
     "react-dom": "16.8.3",
     "react-pressure": "0.1.7",
     "styled-components": "4.1.2"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^1.10.0"
   }
 }
