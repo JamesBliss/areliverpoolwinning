@@ -26,7 +26,7 @@ import {
   Text,
   Small,
   SrOnly
-} from './MatchStyles';
+} from './PageStyles';
 
 //
 const query = gql`
@@ -75,10 +75,10 @@ const EmojiPressure = ({ children, pressing, force, ...rest }) => {
 
 const Emoji = Pressure(EmojiPressure);
 
-class Match extends React.PureComponent {
+class Page extends React.PureComponent {
   render() {
     return (
-      <Query query={ query } variables={{ id: 64 }} pollInterval={5000}>
+      <Query query={ query } variables={{ id: 64 }} pollInterval={ 5000 }>
         {({ data, loading, error }) => {
 
           if (loading) {
@@ -95,19 +95,19 @@ class Match extends React.PureComponent {
 
           const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
 
-          if (status === 'SCHEDULED') {
-            return (
-              <Wrapper>
-                <Text>
-                  <Team team={homeTeam} />
-                  <Team team={awayTeam} />
-                  <Small>
-                    {`in ${howLong(time)}`}
-                  </Small>
-                </Text>
-              </Wrapper>
-            )
-          }
+          // if (status === 'SCHEDULED') {
+          //   return (
+          //     <Wrapper>
+          //       <Text>
+          //         <Team team={homeTeam} />
+          //         <Team team={awayTeam} />
+          //         <Small>
+          //           {`in ${howLong(time)}`}
+          //         </Small>
+          //       </Text>
+          //     </Wrapper>
+          //   )
+          // }
 
           if (score.winner === 'DRAW') {
             return (
@@ -160,4 +160,4 @@ class Match extends React.PureComponent {
   }
 }
 
-export default Match;
+export default Page;

@@ -8,7 +8,9 @@ import { isBrowser } from '../../lib/helpers';
 import GlobalStyles from './Styles';
 import Meta from './Meta';
 
-Router.events.on('routeChangeComplete', url => isBrowser(window.ma.trackEvent('Event', 'navigate', `pageview--${url}`)));
+Router.events.on('routeChangeComplete', (url) => {
+  if (isBrowser) window.ma.trackEvent('Event', 'navigate', `pageview--${url}`);
+});
 
 class Page extends React.Component {
   render() {

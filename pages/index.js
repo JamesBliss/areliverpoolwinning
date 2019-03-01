@@ -1,11 +1,11 @@
 import React from 'react';
 
 // comps
-import Match from '../components/home/Match';
+import Page from '../components/home/Page';
 
 // comp
 const Home = () => (
-  <Match />
+  <Page />
 );
 
 export default Home;
