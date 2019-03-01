@@ -95,19 +95,19 @@ class Page extends React.PureComponent {
 
           const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
 
-          // if (status === 'SCHEDULED') {
-          //   return (
-          //     <Wrapper>
-          //       <Text>
-          //         <Team team={homeTeam} />
-          //         <Team team={awayTeam} />
-          //         <Small>
-          //           {`in ${howLong(time)}`}
-          //         </Small>
-          //       </Text>
-          //     </Wrapper>
-          //   )
-          // }
+          if (status === 'SCHEDULED') {
+            return (
+              <Wrapper>
+                <Text>
+                  <Team team={homeTeam} />
+                  <Team team={awayTeam} />
+                  <Small>
+                    {`in ${howLong(time)}`}
+                  </Small>
+                </Text>
+              </Wrapper>
+            )
+          }
 
           if (score.winner === 'DRAW') {
             return (

@@ -39,7 +39,6 @@ class Team extends React.PureComponent {
     const crestUrl = this.props.query.team.crestUrl || '';
     const tla = this.props.query.team.tla || team.name;
 
-
     return (
       <TeamName
         imageSrc={crestUrl}
