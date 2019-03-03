@@ -15,8 +15,21 @@ export const Match = styled.div`
   flex-direction: column;
   flex: 1 0 auto;
   padding: 0 0 5vmin;
+`;
 
-  &:last-child {
-    padding: 0;
-  }
+export const Block = styled.div`
+  padding: 0 2vmin;
+`;
+
+export const Day = styled.span`
+  color: #fff;
+  background: #1a1a1a;
+  display: block;
+  text-align: center;
+  font-size: 8vmin;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  margin: 0 -2vmin 5vmin;
 `;

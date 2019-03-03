@@ -10,47 +10,56 @@ import Back from './Back';
 // styled
 import {
   Wrapper,
-  Match
+  Match,
+  Day,
+  Block
 } from './MatchesStyles';
 
 
 const query = gql`
   query competitionCurrentMatchday($id: Int!) {
     competitionCurrentMatchday(id: $id) {
-      matches {
+      days {
         utcDate
-        time{
-          days
-          hours
-          minutes
-        }
-        homeTeam {
-          id
-          name
-          crestUrl
-          tla
-          shortName
-          colours {
-            hex
-            textContrast
-          }
-        }
-        awayTeam {
-          id
-          name
-          crestUrl
-          tla
-          shortName
-          colours {
-            hex
-            textContrast
-          }
-        }
-        score {
-          winner
-          fullTime{
-            homeTeam
-            awayTeam
+        displayDate
+        groupedMatches {
+          utcDate
+          displayDate
+          matches {
+            time {
+              days
+              hours
+              minutes
+            }
+            homeTeam {
+              id
+              name
+              crestUrl
+              tla
+              shortName
+              colours {
+                hex
+                textContrast
+              }
+            }
+            awayTeam {
+              id
+              name
+              crestUrl
+              tla
+              shortName
+              colours {
+                hex
+                textContrast
+              }
+            }
+            score {
+              winner
+              fullTime{
+                homeTeam
+                awayTeam
+              }
+            }
           }
         }
       }
@@ -67,21 +76,33 @@ class Matches extends React.PureComponent {
           if (loading) return null;
           if (error) return null;
 
-          const { matches } = data.competitionCurrentMatchday;
+          const { days } = data.competitionCurrentMatchday;
 
           return (
             <Wrapper>
               <Back />
-              { matches.map((match) => {
-                const { homeTeam, awayTeam, score } = match;
-                return (
-                  <Match key={`${homeTeam.id}-${awayTeam.id}`}>
-                    <Team id={homeTeam.id} team={homeTeam} score={score.fullTime.homeTeam} />
-                    <Team id={awayTeam.id} team={awayTeam} score={score.fullTime.awayTeam} />
-                  </Match>
-                )
-              })}
+              { days.map((day) => {
+                const { utcDate, displayDate, groupedMatches } = day;
 
+                return (
+                  <Block key={ utcDate }>
+                    <Day>{displayDate}</Day>
+
+                    { groupedMatches.map((groups) => {
+                      const { matches } = groups;
+                      return matches.map((match) => {
+                        const { homeTeam, awayTeam, score } = match;
+                        return (
+                          <Match key={`${homeTeam.id}-${awayTeam.id}`}>
+                            <Team id={homeTeam.id} team={homeTeam} score={score.fullTime.homeTeam} />
+                            <Team id={awayTeam.id} team={awayTeam} score={score.fullTime.awayTeam} />
+                          </Match>
+                        )
+                      });
+                    })}
+                  </Block>
+                )
+              } ) }
             </Wrapper>
           )
         }}
