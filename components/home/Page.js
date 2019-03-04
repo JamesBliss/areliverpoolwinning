@@ -104,7 +104,7 @@ class Page extends React.PureComponent {
                   <Team team={awayTeam} />
                   <Small>
                     { kickoff !== '' && `in ${howLong(time)}` }
-                    { kickoff !== '' && 'In a few moments' }
+                    { kickoff === '' && 'in a few moments' }
                   </Small>
                 </Text>
               </Wrapper>
