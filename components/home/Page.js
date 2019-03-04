@@ -96,13 +96,15 @@ class Page extends React.PureComponent {
           const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
 
           if (status === 'SCHEDULED') {
+            const kickoff = howLong(time);
             return (
               <Wrapper>
                 <Text>
                   <Team team={homeTeam} />
                   <Team team={awayTeam} />
                   <Small>
-                    {`in ${howLong(time)}`}
+                    { kickoff !== '' && `in ${howLong(time)}` }
+                    { kickoff !== '' && 'In a few moments' }
                   </Small>
                 </Text>
               </Wrapper>
