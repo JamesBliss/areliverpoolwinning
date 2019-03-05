@@ -15,7 +15,7 @@ export const TeamName = styled('span')`
   overflow: hidden;
   flex: 1 0 auto;
   height: auto;
-  width: 100vw;
+  width: 100%;
   z-index: 5;
   font-size: 12vmin;
   line-height: 1.1em;
