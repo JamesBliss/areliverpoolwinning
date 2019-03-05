@@ -1,19 +1,15 @@
 import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import Router from 'next/router'
 
-// // comps
-import Team from './Team';
+// comps
 import Back from './Back';
+import Day from './Day';
 
 // styled
 import {
-  Wrapper,
-  Match,
-  Day,
-  Block
-} from './MatchesStyles';
+  Wrapper
+} from './PageStyles';
 
 
 const query = gql`
@@ -25,6 +21,8 @@ const query = gql`
         groupedMatches {
           utcDate
           displayDate
+          displayDateFull
+          until
           matches {
             time {
               days
@@ -67,7 +65,7 @@ const query = gql`
   }
 `;
 
-class Matches extends React.PureComponent {
+class Page extends React.PureComponent {
   render() {
     return (
       <Query query={query} variables={{ id: 2021 }} pollInterval={ 10000 }>
@@ -78,31 +76,12 @@ class Matches extends React.PureComponent {
 
           const { days } = data.competitionCurrentMatchday;
 
+          console.log(days)
+
           return (
             <Wrapper>
               <Back />
-              { days.map((day) => {
-                const { utcDate, displayDate, groupedMatches } = day;
-
-                return (
-                  <Block key={ utcDate }>
-                    <Day>{displayDate}</Day>
-
-                    { groupedMatches.map((groups) => {
-                      const { matches } = groups;
-                      return matches.map((match) => {
-                        const { homeTeam, awayTeam, score } = match;
-                        return (
-                          <Match key={`${homeTeam.id}-${awayTeam.id}`}>
-                            <Team id={homeTeam.id} team={homeTeam} score={score.fullTime.homeTeam} />
-                            <Team id={awayTeam.id} team={awayTeam} score={score.fullTime.awayTeam} />
-                          </Match>
-                        )
-                      });
-                    })}
-                  </Block>
-                )
-              } ) }
+              { days.map((day) => ( <Day key={ day.utcDate  } data={ day } /> ) ) }
             </Wrapper>
           )
         }}
@@ -111,4 +90,4 @@ class Matches extends React.PureComponent {
   }
 }
 
-export default Matches;
+export default Page;

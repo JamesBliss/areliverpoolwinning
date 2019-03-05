@@ -6,6 +6,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.15;
     -webkit-text-size-adjust: 100%;
     height: 100%;
+    background: #333;
   }
 
   * {
