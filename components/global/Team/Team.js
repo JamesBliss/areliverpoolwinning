@@ -23,10 +23,8 @@ class Team extends React.PureComponent {
         textColour={ team.colours[0].textContrast }
       >
         { tla }
-        <Score
-          textColour={ team.colours[1].textContrast }
-        >
-          {score === null ? '-' : score}
+        <Score textColour={ team.colours[1].textContrast }>
+          { score === null ? '-' : score }
         </Score>
       </TeamName>
     )

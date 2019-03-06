@@ -2,10 +2,10 @@ import styled from 'styled-components';
 
 // styled
 export const Block = styled.div`
-  padding: 0.2em 2vmin;
+  padding: 0.2em 6vmin;
 
   &:not(:last-child) {
-    padding: 0.2em 2vmin 8vmin;
+    padding: 0.2em 6vmin 20vmin;
   }
 `;
 

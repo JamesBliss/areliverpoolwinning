@@ -12,7 +12,7 @@ import {
 class Matches extends React.PureComponent {
   render() {
     const { data } = this.props;
-    const { utcDate, displayDate, groupedMatches } = data;
+    const { utcDate, groupedMatches } = data;
 
     return (
       <Block key={ utcDate }>

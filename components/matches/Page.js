@@ -3,7 +3,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 // comps
-import Back from './Back';
+import Back from '../global/Back';
 import Day from './Day';
 
 // styled

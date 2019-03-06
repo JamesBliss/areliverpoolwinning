@@ -4,13 +4,31 @@ import gql from "graphql-tag";
 import Router from 'next/router'
 
 // // comps
-import Team from './Team';
-import Back from './Back';
+import Team from '../global/Team';
+import Back from '../global/Back';
 
 // styled
 import {
   Wrapper
 } from './MatchStyles';
+
+
+const TEAM_QUERY = gql`
+  query team($id: Int!) {
+    team(
+      id: $id
+    ) {
+      name
+      crestUrl
+      tla
+      shortName
+      colours {
+        hex
+        textContrast
+      }
+    }
+  }
+`;
 
 
 const query = gql`
@@ -46,6 +64,22 @@ const query = gql`
 `;
 
 class Match extends React.PureComponent {
+  renderTeam({ id, score }) {
+    return (
+      <Query query={ TEAM_QUERY } variables={{ id }}>
+        {({ loading, error, data }) => {
+
+          if (loading) return null;
+          if (error) return null;
+
+          return (
+            <Team id={id} team={ data.team } score={ score }/>
+          )
+        }}
+      </Query>
+    )
+  }
+
   render() {
     return (
       <Query query={query} variables={{ id: 64 }} pollInterval={5000}>
@@ -58,9 +92,9 @@ class Match extends React.PureComponent {
 
           return (
             <Wrapper>
-              <Back minute={ minute } status={ status } />
-              <Team id={homeTeam.id} team={homeTeam} score={score.fullTime.homeTeam} />
-              <Team id={awayTeam.id} team={awayTeam} score={score.fullTime.awayTeam}/>
+              <Back minute={minute} status={status} />
+              { this.renderTeam({ id: homeTeam.id, score: score.fullTime.homeTeam }) }
+              { this.renderTeam({ id: awayTeam.id, score: score.fullTime.awayTeam }) }
             </Wrapper>
           )
         }}

@@ -1,7 +1,7 @@
 import React from 'react';
 
 // comps
-import Team from './Team';
+import Team from '../global/Team';
 
 // styled
 import {
@@ -18,7 +18,7 @@ class Group extends React.PureComponent {
 
     return (
       <GroupWrapper>
-        <GroupTime>{displayDateFull}</GroupTime>
+        <GroupTime><span>{displayDateFull}</span></GroupTime>
         { matches.map((match) => {
           const { homeTeam, awayTeam, score } = match;
 
