@@ -1,11 +1,11 @@
 import React from 'react';
 
 // comps
-import Page from '../components/matches/Page';
+import Page from '../components/Styleguide/Page';
 
 // comp
 const Detail = () => (
-  <Page id={ 2001 } />
+  <Page />
 );
 
 export default Detail;

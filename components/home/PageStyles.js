@@ -11,6 +11,38 @@ export const Wrapper = styled.div`
   background: #eaeaea;
 `;
 
+export const Menu = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  height: 100%;
+  background: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const MenuItem = styled.a`
+  display: flex;
+  flex: 1 0 auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 11vmin;
+  text-align: center;
+  cursor: pointer;
+  padding: 20px;
+
+  &:not(:first-child) {
+    border-top: 1px solid #fff;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+`;
+
 export const Emo = styled.div`
   position: relative;
   display: inline-block;

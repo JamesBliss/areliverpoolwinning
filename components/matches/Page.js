@@ -68,15 +68,13 @@ const query = gql`
 class Page extends React.PureComponent {
   render() {
     return (
-      <Query query={query} variables={{ id: 2021 }} pollInterval={ 10000 }>
+      <Query query={query} variables={{ id: this.props.id }} pollInterval={ 10000 }>
         {({ loading, error, data }) => {
 
           if (loading) return null;
           if (error) return null;
 
           const { days } = data.competitionCurrentMatchday;
-
-          console.log(days)
 
           return (
             <Wrapper>
