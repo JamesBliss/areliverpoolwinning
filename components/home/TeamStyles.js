@@ -45,3 +45,17 @@ export const TeamName = styled('span')`
     }
   ` : ``)}
 `;
+
+export const Name = styled.span`
+  &:before {
+    @media(min-width: 1020px) {
+      content: attr(data-desktop);
+    }
+    @media(min-width: 540px) and (max-width: 1019px) {
+      content: attr(data-tablet);
+    }
+    @media(max-width: 539px) {
+      content: attr(data-mobile);
+    }
+  }
+`;

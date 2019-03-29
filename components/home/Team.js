@@ -5,9 +5,7 @@ import gql from "graphql-tag";
 //
 import {
   TeamName,
-  Desktop,
-  Tablet,
-  Mobile
+  Name
 } from './TeamStyles';
 
 //
@@ -32,8 +30,8 @@ class Team extends React.PureComponent {
       <Query query={query} variables={ { id: team.id } }>
         {({ loading, error, data }) => {
 
-          if (loading) return <span>{ team.name }<br /></span>;
-          if (error) return <span>{ team.name }<br /></span>;
+          if (loading) return <span>{ team.name }<br /> </span>;
+          if (error) return <span>{ team.name }<br /> </span>;
 
           const {
             name,
@@ -44,9 +42,11 @@ class Team extends React.PureComponent {
 
           return (
             <TeamName imageSrc={ crestUrl }>
-              <Desktop>{name}</Desktop>
-              <Tablet>{shortName}</Tablet>
-              <Mobile>{tla}</Mobile>
+              <Name
+                data-desktop={name}
+                data-tablet={shortName}
+                data-mobile={tla}
+              />
             </TeamName>
           )
         }}
