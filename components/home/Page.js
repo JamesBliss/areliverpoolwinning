@@ -35,6 +35,7 @@ const query = gql`
       id: $id
     ) {
       id
+      cached
       status
       time {
         days

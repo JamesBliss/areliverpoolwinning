@@ -10,15 +10,13 @@ export const Button = styled.a`
   background: transparent;
   border-radius: 0;
   height: 60px;
-  background: #333;
-  color: #fff;
+  background: #eaeaea;
+  color: #333;
   transition: background 0.2s;
   position: relative;
   outline-offset: -3px;
-  width: calc(100% - 10px);
   display: block;
   text-align: left;
-  margin: 5px 5px 0;
 
   svg {
     height: 100%;
@@ -31,7 +29,7 @@ export const Button = styled.a`
 
   &:hover {
     transition: background 0.2s;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
   }
 
   &:before {
@@ -41,7 +39,7 @@ export const Button = styled.a`
     left: 0;
     height: 100%;
     width: ${ ({force}) => (`calc(${ force * 100 }%)`) };
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
   }
 `;
 
