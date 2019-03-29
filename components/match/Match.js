@@ -18,6 +18,7 @@ const TEAM_QUERY = gql`
     team(
       id: $id
     ) {
+      cached
       name
       crestUrl
       tla

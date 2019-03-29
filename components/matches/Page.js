@@ -15,6 +15,7 @@ import {
 const query = gql`
   query competitionCurrentMatchday($id: Int!) {
     competitionCurrentMatchday(id: $id) {
+      cached
       days {
         utcDate
         displayDate
@@ -78,7 +79,6 @@ class Page extends React.PureComponent {
 
           return (
             <Wrapper>
-              <Back />
               { days.map((day) => ( <Day key={ day.utcDate  } data={ day } /> ) ) }
             </Wrapper>
           )

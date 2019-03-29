@@ -4,7 +4,6 @@ import gql from "graphql-tag";
 import Head from 'next/head';
 import Pressure from 'react-pressure';
 import Router from 'next/router'
-import Link from 'next/link'
 
 // helpers
 
@@ -18,14 +17,10 @@ import {
 import ProgressRing from '../global/ProgressCircle'
 import Team from './Team';
 import Face from '../global/Face';
-import Pl from '../global/Pl';
-import Cl from '../global/Cl';
 
 // styled
 import {
   Wrapper,
-  Menu,
-  MenuItem,
   Emo,
   FaceWrapper,
   Text,
@@ -40,6 +35,7 @@ const query = gql`
       id: $id
     ) {
       id
+      cached
       status
       time {
         days
@@ -81,22 +77,6 @@ const EmojiPressure = ({ children, pressing, force, ...rest }) => {
 const Emoji = Pressure(EmojiPressure);
 
 class Page extends React.PureComponent {
-  renderMenu() {
-    return (
-      <Menu>
-        <Link href={{ pathname: '/'}}>
-          <MenuItem><Face /></MenuItem>
-        </Link>
-        <Link href={{ pathname: '/pl/table'}}>
-          <MenuItem><Pl fill='#fff' /></MenuItem>
-        </Link>
-        <Link href={{ pathname: '/cl/table'}}>
-          <MenuItem><Cl fill='#fff' /></MenuItem>
-        </Link>
-      </Menu>
-    );
-  }
-
   render() {
     return (
       <Query query={ query } variables={{ id: 64 }} pollInterval={ 5000 }>
@@ -161,7 +141,6 @@ class Page extends React.PureComponent {
                   <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon-16x16.png" />
                 </Head>
                 <Emoji>😁</Emoji>
-                { this.renderMenu() }
               </Wrapper>
             );
           }

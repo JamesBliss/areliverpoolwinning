@@ -14,6 +14,7 @@ import {
 const query = gql`
   query competitionStandings($id: Int!, $filter: String) {
     competitionStandings(id: $id, filter: $filter) {
+      cached
       standings {
         type
         table {
@@ -50,14 +51,10 @@ class Page extends React.PureComponent {
 
           const { standings } = data.competitionStandings;
 
-          console.log(standings[0].table)
-
           return (
             <Wrapper>
-              <Back />
-
-              { standings.map(standing => (
-                <Table data={standing.table} />
+              { standings.map((standing, index) => (
+                <Table key={index} data={standing.table} />
               ) ) }
             </Wrapper>
           )

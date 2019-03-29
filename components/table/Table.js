@@ -1,75 +1,65 @@
 import React from 'react';
-import ReactTable from 'react-table';
 
 // styled
 import { TableWrapper } from './TableStyles';
+
+import Test from './Test'
+import Club from './Club'
 
 //
 class Table extends React.PureComponent {
   render() {
     const { data } = this.props;
 
+    const columns = [
+      {
+        Header: '',
+        data: 'position'
+      },
+      {
+        head: '',
+        data: 'playedGames',
+        render: ({ item }) => {
+          return (
+            <Club data={item} />
+          );
+        }
+      },
+      {
+        head: 'PG',
+        data: 'playedGames',
+      },
+      {
+        head: 'GD',
+        data: 'goalDifference'
+      },
+      {
+        head: 'P',
+        data: 'points'
+      }
+    ];
+
     return (
       <TableWrapper>
-        <ReactTable
-          data={ data}
-          defaultPageSize={ data.length}
-          columns={[
-            {
-              Header: '',
-              accessor: 'position'
+
+        <Test
+          columns={columns}
+          data={data}
+          theme={{
+            header: {
+              fontSize: '3vmin',
+              padding: '2vmin'
             },
-            {
-              Header: 'CLUB',
-              id: 'name',
-              accessor: 'thing',
-              Cell: ({original}) => {
-                return (
-                  <span>
-                    <img
-                      style={{ height: '20px', width: '20px' }}
-                      src={original.team.crestUrl}
-                      alt={original.team.name}
-                    />
-                    {original.team.name}
-                  </span>
-                )
-              }
-            },
-            {
-              Header: 'MP',
-              accessor: 'playedGames'
-            },
-            {
-              Header: 'L',
-              accessor: 'lost'
-            },
-            {
-              Header: 'D',
-              accessor: 'draw'
-            },
-            {
-              Header: 'W',
-              accessor: 'won'
-            },
-            {
-              Header: 'GF',
-              accessor: 'goalsFor'
-            },
-            {
-              Header: 'GA',
-              accessor: 'goalsAgainst'
-            },
-            {
-              Header: 'GD',
-              accessor: 'goalDifference'
-            },
-            {
-              Header: 'P',
-              accessor: 'points'
+            row: {
+              fontSize: '3vmin',
+              padding: '2vmin'
             }
-          ]}
+          }}
+          rowProps={{
+            gridTemplateColumns: '6vmin 1fr 10vmin 10vmin 10vmin'
+          }}
         />
+
       </TableWrapper>
     )
   }
