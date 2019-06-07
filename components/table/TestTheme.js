@@ -2,7 +2,7 @@
 const defaultTheme = {
   header: {
     borderTop: 'none',
-    borderBottom: '1px solid pink',
+    borderBottom: '1px solid #eaeaea',
     borderLeft: 'none',
     borderRight: 'none',
     odd: '#fff',
@@ -12,7 +12,7 @@ const defaultTheme = {
   },
   row: {
     borderTop: 'none',
-    borderBottom: '1px solid pink',
+    borderBottom: '1px solid #eaeaea',
     borderLeft: 'none',
     borderRight: 'none',
     odd: '#fff',

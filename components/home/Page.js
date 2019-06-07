@@ -57,15 +57,15 @@ const query = gql`
   }
 `;
 
-const EmojiPressure = ({ children, pressing, force, ...rest }) => {
-  if (force === 1) {
+const EmojiPressure = ({ children, pressing, force, enable = true, ...rest }) => {
+  if (force === 1 && enable) {
     if (isBrowser) window.ma.trackEvent('Event', 'Pressure', 'force');
     Router.push('/match');
   }
 
   return (
     <Emo>
-      <ProgressRing progress={ force * 100 } />
+      { enable && ( <ProgressRing progress={force * 100} /> ) }
       <FaceWrapper>
         <Face emotion={ children } { ...rest } />
       </FaceWrapper>
@@ -84,13 +84,13 @@ class Page extends React.PureComponent {
 
           if (loading) {
             return (
-              <Wrapper><Emoji animationName='rotate' /></Wrapper>
+              <Wrapper><Emoji animationName='rotate' enable={ false } /></Wrapper>
             )
           };
 
           if (error) {
             return (
-              <Wrapper><Emoji>😵</Emoji></Wrapper>
+              <Wrapper><Emoji enable={ false }>😵</Emoji></Wrapper>
             );
           }
 
