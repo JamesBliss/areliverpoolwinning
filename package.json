@@ -1,7 +1,9 @@
 {
   "name": "are-liverpool-winning",
   "version": "0.0.1",
-  "description": "",
+  "description": "Site to show if liverpool are winning",
+  "license": "MIT",
+  "repository": "https://github.com/jamesbliss/areliverpoolwinning",
   "main": "index.js",
   "scripts": {
     "dev": "next",
