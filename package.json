@@ -10,21 +10,21 @@
     "now-build": "next build"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "1.6.1",
-    "apollo-client": "2.6.1",
-    "apollo-link-http": "1.5.14",
+    "apollo-cache-inmemory": "1.6.2",
+    "apollo-client": "2.6.3",
+    "apollo-link-http": "1.5.15",
     "classnames": "^2.2.6",
-    "graphql": "14.3.1",
+    "graphql": "14.4.0",
     "graphql-tag": "2.10.1",
     "isomorphic-fetch": "2.2.1",
     "next": "8.1.0",
     "react": "16.8.6",
-    "react-apollo": "2.5.6",
+    "react-apollo": "2.5.8",
     "react-dom": "16.8.6",
     "react-pressure": "0.1.7",
-    "styled-components": "4.2.1"
+    "styled-components": "4.3.2"
   },
   "devDependencies": {
-    "babel-plugin-styled-components": "^1.10.0"
+    "babel-plugin-styled-components": "^1.10.4"
   }
 }
