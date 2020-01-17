@@ -2,7 +2,6 @@
   "version": 2,
   "name": "areliverpoolwinning",
   "alias": "areliverpoolwinning.com",
-  "regions": ["bru", "bru1"],
   "env": {
     "GA_KEY": "@ga_key"
   }

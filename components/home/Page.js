@@ -56,12 +56,12 @@ const query = gql`
 
 const Emoji = ({ children, enable = true, ...rest }) => {
   return (
-    <>
+    <Emo>
       <FaceWrapper>
         <Face emotion={ children } { ...rest } />
       </FaceWrapper>
       <SrOnly>{children}</SrOnly>
-    </>
+    </Emo>
   );
 }
 
