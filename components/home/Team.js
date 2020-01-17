@@ -40,8 +40,6 @@ class Team extends React.PureComponent {
             shortName
           } = data.team;
 
-          console.log(data)
-
           return (
             <TeamName imageSrc={ crestUrl }>
               <Name
