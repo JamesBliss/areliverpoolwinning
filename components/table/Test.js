@@ -59,7 +59,7 @@ const TableRow = styled.div`
   }
 
   ${ TableBody } & {
-    ${ TableRow } {
+    & {
       border-top: ${ props => props.theme.row.borderTop } ;
       border-right: ${ props => props.theme.row.borderRight } ;
       border-bottom: ${ props => props.theme.row.borderBottom } ;
@@ -126,20 +126,6 @@ const TableFooter = styled.div`
 // TABLE COMPONENT //
 // =============== //
 export default class Table extends Component {
-  static TableHead = TableHead;
-
-  static TableRow = TableRow;
-
-  static TableBody = TableBody;
-
-  static TableFoot = TableFoot;
-
-  static TableHeader = TableHeader;
-
-  static TableData = TableData;
-
-  static TableFooter = TableFooter;
-
   renderTableHead() {
     const { columns, rowProps } = this.props;
 

@@ -3,17 +3,6 @@
   "name": "areliverpoolwinning",
   "alias": "areliverpoolwinning.com",
   "regions": ["bru", "bru1"],
-  "builds": [
-    {
-      "src": "next.config.js",
-      "use": "@now/next",
-      "config": { "maxLambdaSize": "20mb" }
-    }
-  ],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/.*", "dest": "/_error", "status": 404 }
-  ],
   "env": {
     "GA_KEY": "@ga_key"
   }

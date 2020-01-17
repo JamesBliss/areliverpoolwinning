@@ -2,6 +2,7 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
+
 // comps
 import Back from '../global/Back';
 import Day from './Day';

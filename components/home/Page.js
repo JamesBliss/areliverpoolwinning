@@ -2,8 +2,6 @@ import React from 'react';
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Head from 'next/head';
-import Pressure from 'react-pressure';
-import Router from 'next/router'
 
 // helpers
 
@@ -14,7 +12,6 @@ import {
 } from '../../lib/helpers';
 
 // comps
-import ProgressRing from '../global/ProgressCircle'
 import Team from './Team';
 import Face from '../global/Face';
 
@@ -57,110 +54,100 @@ const query = gql`
   }
 `;
 
-const EmojiPressure = ({ children, pressing, force, enable = true, ...rest }) => {
-  if (force === 1 && enable) {
-    if (isBrowser) window.ma.trackEvent('Event', 'Pressure', 'force');
-    Router.push('/match');
-  }
-
+const Emoji = ({ children, enable = true, ...rest }) => {
   return (
-    <Emo>
-      { enable && ( <ProgressRing progress={force * 100} /> ) }
+    <>
       <FaceWrapper>
         <Face emotion={ children } { ...rest } />
       </FaceWrapper>
       <SrOnly>{children}</SrOnly>
-    </Emo>
+    </>
   );
 }
 
-const Emoji = Pressure(EmojiPressure);
+const Page = () => {
+  return (
+    <Query query={ query } variables={{ id: 64 }} pollInterval={ 5000 }>
+      {({ data, loading, error }) => {
 
-class Page extends React.PureComponent {
-  render() {
-    return (
-      <Query query={ query } variables={{ id: 64 }} pollInterval={ 5000 }>
-        {({ data, loading, error }) => {
+        if (loading) {
+          return (
+            <Wrapper><Emoji animationName='rotate' enable={ false } /></Wrapper>
+          )
+        };
 
-          if (loading) {
-            return (
-              <Wrapper><Emoji animationName='rotate' enable={ false } /></Wrapper>
-            )
-          };
+        if (error) {
+          return (
+            <Wrapper><Emoji enable={ false }>😵</Emoji></Wrapper>
+          );
+        }
 
-          if (error) {
-            return (
-              <Wrapper><Emoji enable={ false }>😵</Emoji></Wrapper>
-            );
-          }
+        const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
 
-          const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
+        if (status === 'SCHEDULED') {
+          const kickoff = howLong(time);
+          return (
+            <Wrapper>
+              <Text>
+                <Team team={homeTeam} />
+                <Team team={awayTeam} />
+                <Small>
+                  { kickoff !== '' && ` in ${howLong(time)}` }
+                  { kickoff === '' && ' in a few moments' }
+                </Small>
+              </Text>
+            </Wrapper>
+          )
+        }
 
-          if (status === 'SCHEDULED') {
-            const kickoff = howLong(time);
-            return (
-              <Wrapper>
-                <Text>
-                  <Team team={homeTeam} />
-                  <Team team={awayTeam} />
-                  <Small>
-                    { kickoff !== '' && ` in ${howLong(time)}` }
-                    { kickoff === '' && ' in a few moments' }
-                  </Small>
-                </Text>
-              </Wrapper>
-            )
-          }
-
-          if (score.winner === 'DRAW') {
-            return (
-              <Wrapper>
-                <Head>
-                  <title>😐</title>
-                  <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon.ico"></link>
-                  <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/apple-touch-icon.png" />
-                  <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon-32x32.png" />
-                  <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon-16x16.png" />
-                </Head>
-                <Emoji>😐</Emoji>
-              </Wrapper>
-            );
-          }
-
-          if (
-            (score.winner === 'HOME_TEAM' && isLiverpool(homeTeam.name)) ||
-            (score.winner === 'AWAY_TEAM' && isLiverpool(awayTeam.name))
-          ) {
-            return (
-              <Wrapper>
-                <Head>
-                  <title>😁</title>
-                  <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon.ico"></link>
-                  <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/apple-touch-icon.png" />
-                  <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon-32x32.png" />
-                  <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon-16x16.png" />
-                </Head>
-                <Emoji>😁</Emoji>
-              </Wrapper>
-            );
-          }
-
+        if (score.winner === 'DRAW') {
           return (
             <Wrapper>
               <Head>
-                <title>😭</title>
-                <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon.ico"></link>
-                <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/apple-touch-icon.png" />
-                <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon-32x32.png" />
-                <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon-16x16.png" />
+                <title>😐</title>
+                <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon.ico"></link>
+                <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon-16x16.png" />
               </Head>
-              <Emoji>😭</Emoji>
+              <Emoji>😐</Emoji>
             </Wrapper>
           );
-        }}
-      </Query>
-    )
-  }
+        }
+
+        if (
+          (score.winner === 'HOME_TEAM' && isLiverpool(homeTeam.name)) ||
+          (score.winner === 'AWAY_TEAM' && isLiverpool(awayTeam.name))
+        ) {
+          return (
+            <Wrapper>
+              <Head>
+                <title>😁</title>
+                <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon.ico"></link>
+                <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/apple-touch-icon.png" />
+                <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon-32x32.png" />
+                <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon-16x16.png" />
+              </Head>
+              <Emoji>😁</Emoji>
+            </Wrapper>
+          );
+        }
+
+        return (
+          <Wrapper>
+            <Head>
+              <title>😭</title>
+              <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon.ico"></link>
+              <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/apple-touch-icon.png" />
+              <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon-32x32.png" />
+              <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon-16x16.png" />
+            </Head>
+            <Emoji>😭</Emoji>
+          </Wrapper>
+        );
+      }}
+    </Query>
+  )
 }
 
 export default Page;

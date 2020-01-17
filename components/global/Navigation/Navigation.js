@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 
-import Pl from '../Pl';
-import Cl from '../Cl';
 import Link from '../Link'
 import Face from '../Face';
 
 import {
   Menu,
-  MenuButton,
   MenuDrop,
   MenuItem,
 } from './NavigationStyles';
@@ -20,14 +17,14 @@ const Navigation = () => {
     <Menu>
       <MenuDrop className={ open ? 'is-active' : null }>
         <Link activeClassName='active' additionalPaths={['/match']} href={{ pathname: '/'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } distance='2'><Face /></MenuItem>
+          <MenuItem onClick={ () => { setOpen(!open) } } distance='3'><Face /></MenuItem>
         </Link>
-        <Link activeClassName='active' href={{ pathname: '/pl'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } distance='1'><Pl fill='#333' /></MenuItem>
+        <Link activeClassName='active' href={{ pathname: '/table'}}>
+          <MenuItem onClick={ () => { setOpen(!open) } } distance='2'>T</MenuItem>
         </Link>
-        {/* <Link activeClassName='active' href={{ pathname: '/cl'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } distance='1'><Cl fill='#333' /></MenuItem>
-        </Link> */}
+        <Link activeClassName='active' href={{ pathname: '/fixtures'}}>
+          <MenuItem onClick={ () => { setOpen(!open) } } distance='1'>F</MenuItem>
+        </Link>
         <MenuItem distance='0' onClick={() => { setOpen(!open) }}>
           <svg
             width='16px'
