@@ -9,7 +9,8 @@ const ActiveLink = ({
   href,
   additionalPaths = [],
   activeClassName,
-  ...otherProps
+  ariaLabel,
+  ...rest
 }) => {
   const child = Children.only(children);
 
@@ -21,9 +22,11 @@ const ActiveLink = ({
     return React.cloneElement(child, { className });
   }
 
+  console.log({ rest }, { ariaLabel})
+
   return (
-    <Link href={href} {...otherProps}>
-      { React.cloneElement(child, { className }) }
+    <Link href={href}>
+      {React.cloneElement(child, { className, ...rest }) }
     </Link>
   );
 };

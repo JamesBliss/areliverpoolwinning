@@ -3,7 +3,6 @@ import { useQuery } from '@apollo/client';
 import Head from 'next/head';
 
 // helpers
-
 import {
   isLiverpool,
   howLong,
@@ -46,9 +45,12 @@ const Page = () => {
     }
   })
 
+
   if (loading) {
     return (
-      <Wrapper><Emoji animationName='rotate' enable={ false } /></Wrapper>
+      <>
+        <Wrapper><Emoji animationName='rotate' enable={false} /></Wrapper>
+      </>
     )
   };
 

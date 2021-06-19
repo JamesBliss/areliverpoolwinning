@@ -16,16 +16,16 @@ const Navigation = () => {
   return (
     <Menu>
       <MenuDrop className={ open ? 'is-active' : null }>
-        <Link activeClassName='active' additionalPaths={['/match']} href={{ pathname: '/'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } ><Face /></MenuItem>
+        <Link activeClassName='active' additionalPaths={['/match']} href={{ pathname: '/' }}>
+          <MenuItem onClick={() => { setOpen(!open) }} aria-label="Navigate to Match"><Face /></MenuItem>
         </Link>
         <Link activeClassName='active' href={{ pathname: '/table'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } >T</MenuItem>
+          <MenuItem onClick={() => { setOpen(!open) }} aria-label="Navigate to Table">T</MenuItem>
         </Link>
         <Link activeClassName='active' href={{ pathname: '/fixtures'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } >F</MenuItem>
+          <MenuItem onClick={() => { setOpen(!open) }} aria-label="Navigate to Fixtures">F</MenuItem>
         </Link>
-        <MenuItem onClick={() => { setOpen(!open) }}>
+        <MenuItem onClick={() => { setOpen(!open) }} aria-label="Toggle Menu">
           <svg
             width='16px'
             height='16px'

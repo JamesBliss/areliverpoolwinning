@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Menu = styled.div`
+export const Menu = styled.nav`
   position: fixed;
   z-index: 99;
   bottom: 15px;
