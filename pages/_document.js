@@ -1,26 +1,40 @@
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
 import TrackingCode from '../lib/minimal-ga';
 
 export default class MyDocument extends Document {
-  static getInitialProps({ renderPage }) {
+  static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />));
-    const styleTags = sheet.getStyleElement();
-    return { ...page, styleTags };
+    const originalRenderPage = ctx.renderPage;
+
+    try {
+      ctx.renderPage = () =>
+        originalRenderPage({
+          enhanceApp: (App) => (props) => sheet.collectStyles(<App {...props} />),
+        });
+
+      const initialProps = await Document.getInitialProps(ctx);
+      return {
+        ...initialProps,
+        styles: (
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ),
+      };
+    } finally {
+      sheet.seal();
+    }
   }
 
   render() {
     return (
-      <html>
-        <Head>
-          { this.props.styleTags }
-          <meta name='viewport' content='initial-scale=1, viewport-fit=cover' />
-        </Head>
+      <Html>
+        <Head />
         <body>
           <Main />
-          <script src='https://cdn.polyfill.io/v2/polyfill.min.js' />
           <NextScript />
           <script
             dangerouslySetInnerHTML={{
@@ -28,7 +42,7 @@ export default class MyDocument extends Document {
             }}
           />
         </body>
-      </html>
+      </Html>
     );
   }
 }

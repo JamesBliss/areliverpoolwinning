@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
 
@@ -13,80 +13,32 @@ import {
 } from './PageStyles';
 
 
-const query = gql`
-  query competitionCurrentMatchday($id: Int!) {
-    competitionCurrentMatchday(id: $id) {
-      cached
-      days {
-        utcDate
-        displayDate
-        groupedMatches {
-          utcDate
-          displayDate
-          displayDateFull
-          until
-          matches {
-            time {
-              days
-              hours
-              minutes
-            }
-            homeTeam {
-              id
-              name
-              crestUrl
-              tla
-              shortName
-              colours {
-                hex
-                textContrast
-              }
-            }
-            awayTeam {
-              id
-              name
-              crestUrl
-              tla
-              shortName
-              colours {
-                hex
-                textContrast
-              }
-            }
-            score {
-              winner
-              fullTime{
-                homeTeam
-                awayTeam
-              }
-            }
-          }
-        }
-      }
+// config
+import { pl_id } from '../../lib/config'
+import { GET_FIXTURES } from '../../lib/queries'
+
+// exported component
+const Page = () => {
+  const { data, error, loading } = useQuery(GET_FIXTURES, {
+    variables: {
+      id: pl_id,
+      filter: 'TOTAL'
     }
-  }
-`;
+  })
 
-class Page extends React.PureComponent {
-  render() {
-    return (
-      <Query query={query} variables={{ id: this.props.id }} pollInterval={ 10000 }>
-        {({ loading, error, data }) => {
 
-          if (loading) return null;
-          if (error) return null;
+  if (loading) return null;
+  if (error) return null;
 
-          const { days } = data.competitionCurrentMatchday;
+  console.log({data})
 
-          return (
-            <Wrapper>
-              { days.map((day) => ( <Day key={ day.utcDate  } data={ day } /> ) ) }
-            </Wrapper>
-          )
-        }}
-      </Query>
-    )
-  }
+  const { days } = data.competitionCurrentMatchday;
+
+  return (
+    <Wrapper>
+      { days.map((day) => ( <Day key={ day.utcDate  } data={ day } /> ) ) }
+    </Wrapper>
+  )
 }
 
 export default Page;

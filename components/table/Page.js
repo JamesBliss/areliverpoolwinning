@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/client";
 import gql from "graphql-tag";
 
 // comps
@@ -11,57 +11,32 @@ import {
   Wrapper
 } from './PageStyles';
 
-const query = gql`
-  query competitionStandings($id: Int!, $filter: String) {
-    competitionStandings(id: $id, filter: $filter) {
-      cached
-      standings {
-        type
-        table {
-          position
-          playedGames
-          lost
-          draw
-          won
-          points
-          goalsFor
-          goalsAgainst
-          goalDifference
-          team {
-            name
-            crestUrl
-          }
-        }
-      }
+// config
+import { pl_id } from '../../lib/config'
+import { GET_TABLE } from '../../lib/queries'
+
+// exported component
+const Page = () => {
+  const { data, error, loading } = useQuery(GET_TABLE, {
+    pollInterval: 5000,
+    variables: {
+      id: pl_id,
+      filter: 'TOTAL'
     }
-  }
-`;
+  })
 
-class Page extends React.PureComponent {
-  render() {
-    return (
-      <Query query={ query } variables={ {
-        id: this.props.id,
-        filter: 'TOTAL'
-      } }>
-        {({ loading, error, data }) => {
+  if (loading) return null;
+  if (error) return null;
 
-          if (loading) return null;
-          if (error) return null;
+  const { standings } = data.competitionStandings;
 
-          const { standings } = data.competitionStandings;
-
-          return (
-            <Wrapper>
-              { standings.map((standing, index) => (
-                <Table key={index} data={standing.table} />
-              ) ) }
-            </Wrapper>
-          )
-        }}
-      </Query>
-    )
-  }
+  return (
+    <Wrapper>
+      { standings.map((standing, index) => (
+        <Table key={index} data={standing.table} />
+      ) ) }
+    </Wrapper>
+  )
 }
 
 export default Page;

@@ -13,19 +13,21 @@ import {
 const Navigation = () => {
   const [open, setOpen] = useState(false);
 
+  console.log('hit', open)
+
   return (
     <Menu>
       <MenuDrop className={ open ? 'is-active' : null }>
         <Link activeClassName='active' additionalPaths={['/match']} href={{ pathname: '/'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } distance='3'><Face /></MenuItem>
+          <MenuItem onClick={ () => { setOpen(!open) } } ><Face /></MenuItem>
         </Link>
         <Link activeClassName='active' href={{ pathname: '/table'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } distance='2'>T</MenuItem>
+          <MenuItem onClick={ () => { setOpen(!open) } } >T</MenuItem>
         </Link>
         <Link activeClassName='active' href={{ pathname: '/fixtures'}}>
-          <MenuItem onClick={ () => { setOpen(!open) } } distance='1'>F</MenuItem>
+          <MenuItem onClick={ () => { setOpen(!open) } } >F</MenuItem>
         </Link>
-        <MenuItem distance='0' onClick={() => { setOpen(!open) }}>
+        <MenuItem onClick={() => { setOpen(!open) }}>
           <svg
             width='16px'
             height='16px'

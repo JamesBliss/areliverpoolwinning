@@ -1,5 +1,5 @@
 import React from 'react';
-import { Query } from "react-apollo";
+import { useQuery } from '@apollo/client';
 import gql from "graphql-tag";
 
 //
@@ -8,51 +8,36 @@ import {
   Name
 } from './TeamStyles';
 
+import { GET_TEAM } from '../../lib/queries'
+
 //
-const query = gql`
-  query team($id: Int!) {
-    team(
-      id: $id
-    ) {
-      name
-      crestUrl
-      tla
-      shortName
+const Team = ({ team}) => {
+  const { data, error, loading } = useQuery(GET_TEAM, {
+    variables: {
+      id: team.id
     }
-  }
-`;
+  })
 
-class Team extends React.PureComponent {
-  render() {
-    const { team } = this.props;
+  if (loading) return <span>{ team.name }<br /> </span>;
+  if (error) return <span>{ team.name }<br /> </span>;
 
-    return (
-      <Query query={query} variables={ { id: team.id } }>
-        {({ loading, error, data }) => {
+  const {
+    name,
+    crestUrl,
+    tla,
+    shortName
+  } = data.team;
 
-          if (loading) return <span>{ team.name }<br /> </span>;
-          if (error) return <span>{ team.name }<br /> </span>;
+  return (
+    <TeamName imageSrc={ crestUrl }>
+      <Name
+        data-desktop={name}
+        data-tablet={shortName}
+        data-mobile={tla}
+      />
+    </TeamName>
+  )
 
-          const {
-            name,
-            crestUrl,
-            tla,
-            shortName
-          } = data.team;
-
-          return (
-            <TeamName imageSrc={ crestUrl }>
-              <Name
-                data-desktop={name}
-                data-tablet={shortName}
-                data-mobile={tla}
-              />
-            </TeamName>
-          )
-        }}
-      </Query>
-    )
-  }
 }
 
 export default Team;

@@ -33,13 +33,15 @@ export const MenuItem = styled.button`
   right: 0;
   bottom: 0;
 
-  ${ ({ distance }) => {
-    return (`
-      .is-active & {
-        bottom: ${distance * (54 + 15)}px;
-      }
-    `)
-  }}
+  .is-active &:nth-child(3) {
+    bottom: ${1 * (54 + 15)}px;
+  }
+  .is-active &:nth-child(2) {
+    bottom: ${2 * (54 + 15)}px;
+  }
+  .is-active &:nth-child(1) {
+    bottom: ${3 * (54 + 15)}px;
+  }
 
   &.active {
     z-index: 10;
