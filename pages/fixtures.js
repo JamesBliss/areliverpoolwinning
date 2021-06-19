@@ -34,7 +34,7 @@ export async function getStaticProps(context) {
     });
   } catch (error) {
     error.ctx = context;
-    console.error(error)
+    console.log(error);
     throw error;
   }
 }

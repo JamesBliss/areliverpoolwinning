@@ -13,8 +13,6 @@ import {
 const Navigation = () => {
   const [open, setOpen] = useState(false);
 
-  console.log('hit', open)
-
   return (
     <Menu>
       <MenuDrop className={ open ? 'is-active' : null }>

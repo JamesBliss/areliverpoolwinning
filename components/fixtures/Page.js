@@ -30,8 +30,6 @@ const Page = () => {
   if (loading) return null;
   if (error) return null;
 
-  console.log({data})
-
   const { days } = data.competitionCurrentMatchday;
 
   return (
