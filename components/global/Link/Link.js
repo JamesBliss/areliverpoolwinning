@@ -22,8 +22,6 @@ const ActiveLink = ({
     return React.cloneElement(child, { className });
   }
 
-  console.log({ rest }, { ariaLabel})
-
   return (
     <Link href={href}>
       {React.cloneElement(child, { className, ...rest }) }
