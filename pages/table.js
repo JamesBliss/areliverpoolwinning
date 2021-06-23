@@ -9,7 +9,7 @@ import { pl_id } from '../lib/config'
 import { GET_TABLE } from '../lib/queries'
 
 //
-export async function getStaticProps(context) {
+export const getServerSideProps = async (context) => {
   const apolloClient = initializeApollo();
 
   try {
@@ -17,25 +17,34 @@ export async function getStaticProps(context) {
       apolloClient.query({
         query: GET_TABLE,
         variables: {
-          id: pl_id,
-          filter: 'TOTAL'
+          id: pl_id
         },
       }),
     ]);
 
-    const notFound = !data?.competitionStandings;
+    const notFound = !data?.competitionStandings.data;
 
     return addApolloState(apolloClient, {
       props: {
-        fixtures: data?.competitionStandings
+        fixtures: data?.competitionStandings.data
       },
       notFound,
-      revalidate: 60, // Every minute
     });
   } catch (error) {
-    error.ctx = context;
+    error.ctx = {
+      query: context.query,
+      resolvedUrl: context.resolvedUrl,
+      params: context.params,
+      locales: context.locales,
+      locale: context.locale,
+      defaultLocale: context.defaultLocale,
+    };
+
     console.log(error);
-    throw error;
+
+    return {
+      notFound: true,
+    };
   }
 }
 

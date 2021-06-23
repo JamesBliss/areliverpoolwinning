@@ -26,9 +26,9 @@ const Page = () => {
   })
 
   if (loading) return null;
-  if (error) return null;
+  if (error || data.competitionStandings.errors.length > 0) return null;
 
-  const { standings } = data.competitionStandings;
+  const { standings } = data.competitionStandings.data;
 
   return (
     <Wrapper>

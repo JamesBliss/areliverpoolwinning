@@ -28,9 +28,9 @@ const Page = () => {
 
 
   if (loading) return null;
-  if (error) return null;
+  if (error || data.competitionCurrentMatchday.errors.length > 0) return null;
 
-  const { days } = data.competitionCurrentMatchday;
+  const { days } = data.competitionCurrentMatchday.data;
 
   return (
     <Wrapper>

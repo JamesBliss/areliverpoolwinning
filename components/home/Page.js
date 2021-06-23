@@ -43,8 +43,7 @@ const Page = () => {
     variables: {
       id: liverpool_id
     }
-  })
-
+  });
 
   if (loading) {
     return (
@@ -54,13 +53,13 @@ const Page = () => {
     )
   };
 
-  if (error) {
+  if (error || data.nextMatchByID.errors.length > 0) {
     return (
       <Wrapper><Emoji enable={ false }>😵</Emoji></Wrapper>
     );
   }
 
-  const { status, score, homeTeam, awayTeam, time } = data.nextMatch;
+  const { status, score, homeTeam, awayTeam, time } = data.nextMatchByID.data;
 
   if (status === 'SCHEDULED') {
     const kickoff = howLong(time);

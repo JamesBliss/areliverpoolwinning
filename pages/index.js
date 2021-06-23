@@ -9,7 +9,7 @@ import { liverpool_id } from '../lib/config'
 import { GET_NEXT_MATCH } from '../lib/queries'
 
 //
-export async function getStaticProps(context) {
+export const getServerSideProps = async (context) => {
   const apolloClient = initializeApollo();
 
   try {
@@ -22,19 +22,27 @@ export async function getStaticProps(context) {
       }),
     ]);
 
-    const notFound = !data?.nextMatch;
+    const notFound = !data?.nextMatchByID;
 
     return addApolloState(apolloClient, {
-      props: {
-        match: data?.nextMatch
-      },
-      notFound,
-      revalidate: 60, // Every minute
+      props: {},
+      notFound
     });
   } catch (error) {
-    error.ctx = context;
+    error.ctx = {
+      query: context.query,
+      resolvedUrl: context.resolvedUrl,
+      params: context.params,
+      locales: context.locales,
+      locale: context.locale,
+      defaultLocale: context.defaultLocale,
+    };
+
     console.log(error);
-    throw error;
+
+    return {
+      notFound: true,
+    };
   }
 }
 

@@ -9,7 +9,7 @@ import { pl_id } from '../lib/config'
 import { GET_FIXTURES } from '../lib/queries'
 
 //
-export async function getStaticProps(context) {
+export const getServerSideProps = async (context) => {
   const apolloClient = initializeApollo();
 
   try {
@@ -23,19 +23,29 @@ export async function getStaticProps(context) {
       }),
     ]);
 
-    const notFound = !data?.competitionCurrentMatchday;
+    const notFound = !data?.competitionCurrentMatchday.data;
 
     return addApolloState(apolloClient, {
       props: {
-        fixtures: data?.competitionCurrentMatchday
+        fixtures: data?.competitionCurrentMatchday.data
       },
       notFound,
-      revalidate: 60, // Every minute
     });
   } catch (error) {
-    error.ctx = context;
+    error.ctx = {
+      query: context.query,
+      resolvedUrl: context.resolvedUrl,
+      params: context.params,
+      locales: context.locales,
+      locale: context.locale,
+      defaultLocale: context.defaultLocale,
+    };
+
     console.log(error);
-    throw error;
+
+    return {
+      notFound: true,
+    };
   }
 }
 
