@@ -9,7 +9,9 @@ const Container = styled.div`
   overflow: hidden;
   font-size: 3vmin;
 
-  ${ ({ imageSrc }) => (imageSrc ? `
+  ${({ imageSrc }) =>
+    imageSrc
+      ? `
     &:before {
       content: '';
       display: block;
@@ -24,13 +26,10 @@ const Container = styled.div`
       height: 80%;
       width: 1.2em;
     }
-  ` : ``)}
+  `
+      : ``}
 `;
 
-const Club = ({ data }) => (
-  <Container imageSrc={ data.team.crestUrl }>
-    {data.team.name}
-  </Container>
-);
+const Club = ({ data }) => <Container imageSrc={data.team.crestUrl}>{data.team.name}</Container>;
 
 export default Club;

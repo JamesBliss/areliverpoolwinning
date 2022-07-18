@@ -20,7 +20,7 @@ export const Emo = styled.div`
   font-size: 25vmin;
   cursor: pointer;
 
-  @media(min-width: 620px) {
+  @media (min-width: 620px) {
     font-size: 20vmin;
   }
 `;

@@ -4,9 +4,9 @@ import React from 'react';
 import Table from '../components/table/Page';
 
 // config
-import { addApolloState, initializeApollo } from '../lib/apollo'
-import { pl_id } from '../lib/config'
-import { GET_TABLE } from '../lib/queries'
+import { addApolloState, initializeApollo } from '../lib/apollo';
+import { pl_id } from '../lib/config';
+import { GET_TABLE } from '../lib/queries';
 
 //
 export const getServerSideProps = async (context) => {
@@ -17,7 +17,7 @@ export const getServerSideProps = async (context) => {
       apolloClient.query({
         query: GET_TABLE,
         variables: {
-          id: pl_id
+          id: pl_id,
         },
       }),
     ]);
@@ -26,7 +26,7 @@ export const getServerSideProps = async (context) => {
 
     return addApolloState(apolloClient, {
       props: {
-        fixtures: data?.competitionStandings.data
+        fixtures: data?.competitionStandings.data,
       },
       notFound,
     });
@@ -46,11 +46,10 @@ export const getServerSideProps = async (context) => {
       notFound: true,
     };
   }
-}
-
+};
 
 // exported component
-const Tables = () => <Table />
+const Tables = () => <Table />;
 
 // export
 export default Tables;

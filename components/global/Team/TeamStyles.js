@@ -19,7 +19,7 @@ export const TeamName = styled('span')`
   z-index: 5;
   font-size: 12vmin;
   line-height: 1.1em;
-  color: ${ ({textColour}) => textColour };
+  color: ${({ textColour }) => textColour};
   font-weight: 300;
 
   border-top: 5px solid #333;
@@ -33,12 +33,14 @@ export const TeamName = styled('span')`
   border-right: 5px solid #333;
   border-left: 5px solid #333;
 
-  ${ ({ colorOne, colorTwo }) => (`
+  ${({ colorOne, colorTwo }) => `
     background: linear-gradient(120deg, ${colorOne} 0%, ${colorOne} 60%, ${colorTwo} 60%, ${colorTwo} 100%);
     background-size: 100% 105%;
-  `)};
+  `};
 
-  ${ ({ imageSrc }) => (imageSrc ? `
+  ${({ imageSrc }) =>
+    imageSrc
+      ? `
     &:before {
       content: '';
       display: block;
@@ -57,7 +59,8 @@ export const TeamName = styled('span')`
       height: 80%;
       width: 1em;
     }
-  ` : ``)}
+  `
+      : ``}
 `;
 
 export const Score = styled.span`
@@ -67,5 +70,5 @@ export const Score = styled.span`
   top: 50%;
   left: 65%;
   transform: translateY(-50%);
-  color: ${ ({textColour}) => textColour };
+  color: ${({ textColour }) => textColour};
 `;

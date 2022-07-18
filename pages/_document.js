@@ -38,7 +38,7 @@ export default class MyDocument extends Document {
           <NextScript />
           <script
             dangerouslySetInnerHTML={{
-              __html: TrackingCode
+              __html: TrackingCode,
             }}
           />
         </body>

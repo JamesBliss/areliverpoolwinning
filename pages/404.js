@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 //
-import Face from '../components/global/Face'
+import Face from '../components/global/Face';
 
 //
 const Wrapper = styled.div`
@@ -21,7 +21,7 @@ const FaceWrap = styled.div`
   font-size: 25vmin;
   cursor: pointer;
 
-  @media(min-width: 620px) {
+  @media (min-width: 620px) {
     font-size: 20vmin;
   }
 `;
@@ -32,11 +32,11 @@ export default function Custom404() {
     <Wrapper>
       <div>
         <FaceWrap>
-          <Face emotion={"😵"} />
+          <Face emotion="😵" />
         </FaceWrap>
         <h1>Whoops, something isn&apos;t right</h1>
         <p>Please come back in few minutes or use the navigation to find the right page</p>
       </div>
     </Wrapper>
-  )
+  );
 }

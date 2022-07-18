@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 //
-import Face from '../components/global/Face'
+import Face from '../components/global/Face';
 
 //
 const Wrapper = styled.div`
@@ -21,7 +21,7 @@ const FaceWrap = styled.div`
   font-size: 25vmin;
   cursor: pointer;
 
-  @media(min-width: 620px) {
+  @media (min-width: 620px) {
     font-size: 20vmin;
   }
 `;
@@ -32,20 +32,24 @@ function Error({ statusCode }) {
     <Wrapper>
       <div>
         <FaceWrap>
-          <Face emotion={"😵"} />
+          <Face emotion="😵" />
         </FaceWrap>
         <h1>Whoops, something isn&apos;t right</h1>
         <p>Please come back in few minutes</p>
-        <p><strong><em>{statusCode}</em></strong></p>
+        <p>
+          <strong>
+            <em>{statusCode}</em>
+          </strong>
+        </p>
       </div>
     </Wrapper>
-  )
+  );
 }
 
 Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
-  return { statusCode }
-}
+  // eslint-disable-next-line
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+  return { statusCode };
+};
 
-export default Error
-
+export default Error;

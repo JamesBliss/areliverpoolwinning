@@ -1,13 +1,10 @@
 import React from 'react';
 
 //
-import {
-  TeamName,
-  Score
-} from './TeamStyles';
+import { TeamName, Score } from './TeamStyles';
 
 const Team = ({ team, score }) => {
-  const tla = team.tla;
+  const { tla } = team;
   const crestUrl = team?.crestUrl || '';
 
   const colorOne = team?.colours?.[0].hex || '#fff';
@@ -17,22 +14,15 @@ const Team = ({ team, score }) => {
   const colorTwoContrast = team?.colours?.[1]?.textContrast || '#fff';
 
   return (
-    <TeamName
-      imageSrc={ crestUrl }
-      colorOne={ colorOne }
-      colorTwo={ colorTwo }
-      textColour={ colorOneContrast }
-    >
-      { tla }
-      <Score textColour={ colorTwoContrast }>
-        { score === null ? '-' : score }
-      </Score>
+    <TeamName imageSrc={crestUrl} colorOne={colorOne} colorTwo={colorTwo} textColour={colorOneContrast}>
+      {tla}
+      <Score textColour={colorTwoContrast}>{score === null ? '-' : score}</Score>
     </TeamName>
-  )
-}
+  );
+};
 
 Team.defaultProps = {
-  score: null
-}
+  score: null,
+};
 
 export default Team;

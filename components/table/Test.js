@@ -13,16 +13,16 @@ import defaultTheme from './TestTheme';
 const Element = styled.div`
   display: grid;
   width: 100%;
-  grid-template-areas: "header" "custom" "body" "footer";
+  grid-template-areas: 'header' 'custom' 'body' 'footer';
 `;
 
 // groups components
 const TableHead = styled.div`
   grid-area: header;
-  border-top: ${ props => props.theme.header.borderTop } ;
-  border-right: ${ props => props.theme.header.borderRight } ;
-  border-bottom: ${ props => props.theme.header.borderBottom } ;
-  border-left: ${ props => props.theme.header.borderLeft } ;
+  border-top: ${(props) => props.theme.header.borderTop};
+  border-right: ${(props) => props.theme.header.borderRight};
+  border-bottom: ${(props) => props.theme.header.borderBottom};
+  border-left: ${(props) => props.theme.header.borderLeft};
 `;
 
 const TableBody = styled.div`
@@ -36,52 +36,52 @@ const TableCustom = styled.div`
 const TableFoot = styled.div`
   grid-area: footer;
 
-  border-top: ${ props => props.theme.footer.bsorderTop } ;
-  border-right: ${ props => props.theme.footer.borderRight } ;
-  border-bottom: ${ props => props.theme.footer.borderBottom } ;
-  border-left: ${ props => props.theme.footer.borderLeft } ;
+  border-top: ${(props) => props.theme.footer.bsorderTop};
+  border-right: ${(props) => props.theme.footer.borderRight};
+  border-bottom: ${(props) => props.theme.footer.borderBottom};
+  border-left: ${(props) => props.theme.footer.borderLeft};
 `;
 
 // inner components
 const TableRow = styled.div`
   display: grid;
   align-items: center;
-  grid-template-columns: ${ props => props.gridTemplateColumns };
+  grid-template-columns: ${(props) => props.gridTemplateColumns};
 
-  ${ TableHead } & {
+  ${TableHead} & {
     &:nth-child(odd) {
-      background: ${ props => props.theme.header.odd } ;
+      background: ${(props) => props.theme.header.odd};
     }
 
     &:nth-child(even) {
-      background: ${ props => props.theme.header.even } ;
+      background: ${(props) => props.theme.header.even};
     }
   }
 
-  ${ TableBody } & {
+  ${TableBody} & {
     & {
-      border-top: ${ props => props.theme.row.borderTop } ;
-      border-right: ${ props => props.theme.row.borderRight } ;
-      border-bottom: ${ props => props.theme.row.borderBottom } ;
-      border-left: ${ props => props.theme.row.borderLeft } ;
+      border-top: ${(props) => props.theme.row.borderTop};
+      border-right: ${(props) => props.theme.row.borderRight};
+      border-bottom: ${(props) => props.theme.row.borderBottom};
+      border-left: ${(props) => props.theme.row.borderLeft};
     }
 
     &:nth-child(odd) {
-      background: ${ props => props.theme.row.odd } ;
+      background: ${(props) => props.theme.row.odd};
     }
 
     &:nth-child(even) {
-      background: ${ props => props.theme.row.even } ;
+      background: ${(props) => props.theme.row.even};
     }
   }
 
-  ${ TableFoot } & {
+  ${TableFoot} & {
     &:nth-child(odd) {
-      background: ${ props => props.theme.footer.odd } ;
+      background: ${(props) => props.theme.footer.odd};
     }
 
     &:nth-child(even) {
-      background: ${ props => props.theme.footer.even } ;
+      background: ${(props) => props.theme.footer.even};
     }
   }
 `;
@@ -91,8 +91,8 @@ const TableHeader = styled.div`
   box-sizing: border-box;
   background: transparent;
 
-  padding: ${ props => props.theme.header.padding } ;
-  font-size: ${ props => props.theme.header.fontSize } ;
+  padding: ${(props) => props.theme.header.padding};
+  font-size: ${(props) => props.theme.header.fontSize};
   font-weight: 500;
   color: #333333;
 `;
@@ -102,8 +102,8 @@ const TableData = styled.div`
   box-sizing: border-box;
   background: transparent;
 
-  padding: ${ props => props.theme.row.padding } ;
-  font-size: ${ props => props.theme.row.fontSize } ;
+  padding: ${(props) => props.theme.row.padding};
+  font-size: ${(props) => props.theme.row.fontSize};
   font-weight: 400;
   color: #333333;
 `;
@@ -114,13 +114,12 @@ const TableFooter = styled.div`
   background: transparent;
 
   &:not(:empty) {
-    padding: ${ props => props.theme.footer.padding } ;
-    font-size: ${ props => props.theme.footer.fontSize } ;
+    padding: ${(props) => props.theme.footer.padding};
+    font-size: ${(props) => props.theme.footer.fontSize};
     font-size: 1.1em;
     color: #333333;
   }
 `;
-
 
 // =============== //
 // TABLE COMPONENT //
@@ -131,12 +130,11 @@ export default class Table extends Component {
 
     return (
       <TableHead>
-        <TableRow { ...rowProps }>
-          { columns.map((columnItem, index) => (
-            <TableHeader key={ index }>
-              { columnItem.head }
-            </TableHeader>
-          ) ) }
+        <TableRow {...rowProps}>
+          {columns.map((columnItem, index) => (
+            // eslint-disable-next-line
+            <TableHeader key={index}>{columnItem.head}</TableHeader>
+          ))}
         </TableRow>
       </TableHead>
     );
@@ -145,11 +143,7 @@ export default class Table extends Component {
   renderCustom() {
     const { children } = this.props;
 
-    return (
-      <TableCustom>
-        { children }
-      </TableCustom>
-    );
+    return <TableCustom>{children}</TableCustom>;
   }
 
   renderTableBody() {
@@ -157,21 +151,22 @@ export default class Table extends Component {
 
     return (
       <TableBody>
-        { data.map((dataItem, index) => {
-          return (
-            <TableRow key={index} { ...rowProps }>
-              { columns.map((columnItem, index) => {
-                const hasRender = columnItem.render;
-                return (
-                  <TableData key={index}>
-                    {hasRender && hasRender({ mapped: dataItem[columnItem.data], item: dataItem, column: columnItem }) }
-                    { !hasRender && dataItem[columnItem.data] }
-                  </TableData>
-                );
-              }) }
-            </TableRow>
-          );
-        }) }
+        {data.map((dataItem, index) => (
+          // eslint-disable-next-line
+          <TableRow key={index} {...rowProps}>
+            {/* eslint-disable-next-line */}
+            {columns.map((columnItem, index) => {
+              const hasRender = columnItem.render;
+              return (
+                // eslint-disable-next-line
+                <TableData key={index}>
+                  {hasRender && hasRender({ mapped: dataItem[columnItem.data], item: dataItem, column: columnItem })}
+                  {!hasRender && dataItem[columnItem.data]}
+                </TableData>
+              );
+            })}
+          </TableRow>
+        ))}
       </TableBody>
     );
   }
@@ -181,14 +176,11 @@ export default class Table extends Component {
 
     return (
       <TableFoot>
-        <TableRow { ...rowProps }>
-          { columns.map((columnItem, index) => {
-            return (
-              <TableFooter key={index}>
-                { columnItem.foot }
-              </TableFooter>
-            );
-          }) }
+        <TableRow {...rowProps}>
+          {columns.map((columnItem, index) => (
+            // eslint-disable-next-line
+            <TableFooter key={index}>{columnItem.foot}</TableFooter>
+          ))}
         </TableRow>
       </TableFoot>
     );
@@ -198,12 +190,12 @@ export default class Table extends Component {
     const { theme } = this.props;
 
     return (
-      <ThemeProvider theme={ merge(defaultTheme, theme) }>
+      <ThemeProvider theme={merge(defaultTheme, theme)}>
         <Element>
-          { this.renderTableHead() }
-          { this.renderCustom() }
-          { this.renderTableBody() }
-          { this.renderTableFoot() }
+          {this.renderTableHead()}
+          {this.renderCustom()}
+          {this.renderTableBody()}
+          {this.renderTableFoot()}
         </Element>
       </ThemeProvider>
     );
@@ -215,9 +207,9 @@ Table.defaultProps = {
   data: [],
   columns: [],
   rowProps: {
-    gridTemplateColumns: '1fr 1fr 1fr'
+    gridTemplateColumns: '1fr 1fr 1fr',
   },
-  theme: {}
+  theme: {},
 };
 
 Table.propTypes = {
@@ -225,7 +217,7 @@ Table.propTypes = {
   data: PropTypes.array,
   columns: PropTypes.array,
   rowProps: PropTypes.shape({
-    gridTemplateColumns: PropTypes.string
+    gridTemplateColumns: PropTypes.string,
   }),
   theme: PropTypes.shape({
     header: PropTypes.shape({
@@ -234,7 +226,7 @@ Table.propTypes = {
       borderLeft: PropTypes.string,
       borderRight: PropTypes.string,
       odd: PropTypes.string,
-      even: PropTypes.string
+      even: PropTypes.string,
     }),
     row: PropTypes.shape({
       borderTop: PropTypes.string,
@@ -242,7 +234,7 @@ Table.propTypes = {
       borderLeft: PropTypes.string,
       borderRight: PropTypes.string,
       odd: PropTypes.string,
-      even: PropTypes.string
+      even: PropTypes.string,
     }),
     footer: PropTypes.shape({
       borderTop: PropTypes.string,
@@ -250,7 +242,7 @@ Table.propTypes = {
       borderLeft: PropTypes.string,
       borderRight: PropTypes.string,
       odd: PropTypes.string,
-      even: PropTypes.string
-    })
-  })
+      even: PropTypes.string,
+    }),
+  }),
 };

@@ -22,7 +22,7 @@ export const Button = styled.a`
     height: 100%;
     margin: 0 10px;
 
-    @media(min-width: 620px) {
+    @media (min-width: 620px) {
       margin: 0 20px;
     }
   }
@@ -38,7 +38,7 @@ export const Button = styled.a`
     top: 0;
     left: 0;
     height: 100%;
-    width: ${({ force }) => (`calc(${force * 100}%)`)};
+    width: ${({ force }) => `calc(${force * 100}%)`};
     background: rgba(0, 0, 0, 0.2);
   }
 `;

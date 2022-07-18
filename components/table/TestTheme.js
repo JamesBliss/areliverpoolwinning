@@ -1,4 +1,3 @@
-
 const defaultTheme = {
   header: {
     borderTop: 'none',
@@ -8,7 +7,7 @@ const defaultTheme = {
     odd: '#fff',
     even: '#eaeaea',
     padding: '20px',
-    fontSize: '1.1em'
+    fontSize: '1.1em',
   },
   row: {
     borderTop: 'none',
@@ -18,7 +17,7 @@ const defaultTheme = {
     odd: '#fff',
     even: '#eaeaea',
     padding: '20px',
-    fontSize: '1.4em'
+    fontSize: '1.4em',
   },
   footer: {
     borderTop: 'none',
@@ -28,8 +27,8 @@ const defaultTheme = {
     odd: '#fff',
     even: '#eaeaea',
     padding: '20px',
-    fontSize: '1.1em'
-  }
+    fontSize: '1.1em',
+  },
 };
 
 export default defaultTheme;

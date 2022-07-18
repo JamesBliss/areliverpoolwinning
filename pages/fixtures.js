@@ -4,9 +4,9 @@ import React from 'react';
 import FixtureList from '../components/fixtures/Page';
 
 // config
-import { addApolloState, initializeApollo } from '../lib/apollo'
-import { pl_id } from '../lib/config'
-import { GET_FIXTURES } from '../lib/queries'
+import { addApolloState, initializeApollo } from '../lib/apollo';
+import { pl_id } from '../lib/config';
+import { GET_FIXTURES } from '../lib/queries';
 
 //
 export const getServerSideProps = async (context) => {
@@ -18,7 +18,7 @@ export const getServerSideProps = async (context) => {
         query: GET_FIXTURES,
         variables: {
           id: pl_id,
-          filter: 'TOTAL'
+          filter: 'TOTAL',
         },
       }),
     ]);
@@ -27,7 +27,7 @@ export const getServerSideProps = async (context) => {
 
     return addApolloState(apolloClient, {
       props: {
-        fixtures: data?.competitionCurrentMatchday.data
+        fixtures: data?.competitionCurrentMatchday.data,
       },
       notFound,
     });
@@ -47,10 +47,10 @@ export const getServerSideProps = async (context) => {
       notFound: true,
     };
   }
-}
+};
 
 // exported component
-const Fixtures = () => <FixtureList  />
+const Fixtures = () => <FixtureList />;
 
 // export
 export default Fixtures;

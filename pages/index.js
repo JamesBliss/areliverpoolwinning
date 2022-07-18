@@ -1,9 +1,9 @@
 import React from 'react';
 
 // config
-import { addApolloState, initializeApollo } from '~/lib/apollo'
-import { liverpool_id } from '~/lib/config'
-import { GET_NEXT_MATCH } from '~/lib/queries'
+import { addApolloState, initializeApollo } from '~/lib/apollo';
+import { liverpool_id } from '~/lib/config';
+import { GET_NEXT_MATCH } from '~/lib/queries';
 
 // comps
 import Page from '~/components/home/Page';
@@ -17,7 +17,7 @@ export const getServerSideProps = async (context) => {
       apolloClient.query({
         query: GET_NEXT_MATCH,
         variables: {
-          id: liverpool_id
+          id: liverpool_id,
         },
       }),
     ]);
@@ -26,7 +26,7 @@ export const getServerSideProps = async (context) => {
 
     return addApolloState(apolloClient, {
       props: {},
-      notFound
+      notFound,
     });
   } catch (error) {
     error.ctx = {
@@ -44,11 +44,9 @@ export const getServerSideProps = async (context) => {
       notFound: true,
     };
   }
-}
+};
 
 // comp
-const Home = () => (
-  <Page />
-);
+const Home = () => <Page />;
 
 export default Home;

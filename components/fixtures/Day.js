@@ -4,9 +4,9 @@ import React from 'react';
 import Group from './Group';
 
 //
-const Day = ({data}) => {
+const Day = ({ data }) => {
   const { groupedMatches } = data;
-  return groupedMatches.map((group) =>  (<Group key={ group.utcDate } data={ group } /> ))
-}
+  return groupedMatches.map((group) => <Group key={group.utcDate} data={group} />);
+};
 
 export default Day;

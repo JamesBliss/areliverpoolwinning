@@ -3,8 +3,8 @@ import React from 'react';
 // styled
 import { TableWrapper } from './TableStyles';
 
-import Test from './Test'
-import Club from './Club'
+import Test from './Test';
+import Club from './Club';
 
 //
 class Table extends React.PureComponent {
@@ -14,16 +14,12 @@ class Table extends React.PureComponent {
     const columns = [
       {
         Header: '',
-        data: 'position'
+        data: 'position',
       },
       {
         head: '',
         data: 'playedGames',
-        render: ({ item }) => {
-          return (
-            <Club data={item} />
-          );
-        }
+        render: ({ item }) => <Club data={item} />,
       },
       {
         head: 'PG',
@@ -31,37 +27,35 @@ class Table extends React.PureComponent {
       },
       {
         head: 'GD',
-        data: 'goalDifference'
+        data: 'goalDifference',
       },
       {
         head: 'P',
-        data: 'points'
-      }
+        data: 'points',
+      },
     ];
 
     return (
       <TableWrapper>
-
         <Test
           columns={columns}
           data={data}
           theme={{
             header: {
               fontSize: '3vmin',
-              padding: '2vmin'
+              padding: '2vmin',
             },
             row: {
               fontSize: '3vmin',
-              padding: '2vmin'
-            }
+              padding: '2vmin',
+            },
           }}
           rowProps={{
-            gridTemplateColumns: '6vmin 1fr 10vmin 10vmin 10vmin'
+            gridTemplateColumns: '6vmin 1fr 10vmin 10vmin 10vmin',
           }}
         />
-
       </TableWrapper>
-    )
+    );
   }
 }
 

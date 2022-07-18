@@ -2,59 +2,51 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 
 // helpers
-import {
-  isLiverpool,
-  howLong,
-} from '~/lib/helpers';
+import { isLiverpool, howLong } from '~/lib/helpers';
 
 // config
-import { liverpool_id } from '~/lib/config'
-import { GET_NEXT_MATCH } from '~/lib/queries'
+import { liverpool_id } from '~/lib/config';
+import { GET_NEXT_MATCH } from '~/lib/queries';
 
 // comps
 import Face from '~/components/global/Face';
 import Team from './Team';
 
 // styled
-import {
-  Wrapper,
-  Emo,
-  FaceWrapper,
-  Text,
-  Small,
-  SrOnly
-} from './PageStyles';
+import { Wrapper, Emo, FaceWrapper, Text, Small, SrOnly } from './PageStyles';
 
-const Emoji = ({ children, ...rest }) => {
-  return (
-    <Emo>
-      <FaceWrapper>
-        <Face emotion={children} {...rest} />
-      </FaceWrapper>
-      <SrOnly>{children}</SrOnly>
-    </Emo>
-  );
-}
+const Emoji = ({ children, ...rest }) => (
+  <Emo>
+    <FaceWrapper>
+      <Face emotion={children} {...rest} />
+    </FaceWrapper>
+    <SrOnly>{children}</SrOnly>
+  </Emo>
+);
 
 const Page = () => {
   const { data, error, loading } = useQuery(GET_NEXT_MATCH, {
     pollInterval: 5000,
     variables: {
-      id: liverpool_id
-    }
+      id: liverpool_id,
+    },
   });
 
-  console.log({ data })
+  console.log({ data });
 
   if (loading) {
     return (
-      <Wrapper><Emoji /></Wrapper>
-    )
-  };
+      <Wrapper>
+        <Emoji />
+      </Wrapper>
+    );
+  }
 
   if (error || data.nextMatchByID.errors.length > 0) {
     return (
-      <Wrapper><Emoji>😵</Emoji></Wrapper>
+      <Wrapper>
+        <Emoji>😵</Emoji>
+      </Wrapper>
     );
   }
 
@@ -73,7 +65,7 @@ const Page = () => {
           </Small>
         </Text>
       </Wrapper>
-    )
+    );
   }
 
   if (score.winner === 'DRAW') {
@@ -100,6 +92,6 @@ const Page = () => {
       <Emoji>😭</Emoji>
     </Wrapper>
   );
-}
+};
 
 export default Page;
