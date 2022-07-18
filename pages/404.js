@@ -34,7 +34,7 @@ export default function Custom404() {
         <FaceWrap>
           <Face emotion={"😵"} />
         </FaceWrap>
-        <h1>Whoops, something isn't right</h1>
+        <h1>Whoops, something isn&apos;t right</h1>
         <p>Please come back in few minutes or use the navigation to find the right page</p>
       </div>
     </Wrapper>

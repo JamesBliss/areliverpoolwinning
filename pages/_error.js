@@ -34,7 +34,7 @@ function Error({ statusCode }) {
         <FaceWrap>
           <Face emotion={"😵"} />
         </FaceWrap>
-        <h1>Whoops, something isn't right</h1>
+        <h1>Whoops, something isn&apos;t right</h1>
         <p>Please come back in few minutes</p>
         <p><strong><em>{statusCode}</em></strong></p>
       </div>

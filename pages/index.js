@@ -1,12 +1,12 @@
 import React from 'react';
 
-// comps
-import Page from '../components/home/Page';
-
 // config
-import { addApolloState, initializeApollo } from '../lib/apollo'
-import { liverpool_id } from '../lib/config'
-import { GET_NEXT_MATCH } from '../lib/queries'
+import { addApolloState, initializeApollo } from '~/lib/apollo'
+import { liverpool_id } from '~/lib/config'
+import { GET_NEXT_MATCH } from '~/lib/queries'
+
+// comps
+import Page from '~/components/home/Page';
 
 //
 export const getServerSideProps = async (context) => {
@@ -38,7 +38,7 @@ export const getServerSideProps = async (context) => {
       defaultLocale: context.defaultLocale,
     };
 
-    console.log(error);
+    console.error(error);
 
     return {
       notFound: true,

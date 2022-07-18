@@ -1,7 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 
-import TrackingCode from '../lib/minimal-ga';
+import TrackingCode from '~/lib/minimal-ga';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {

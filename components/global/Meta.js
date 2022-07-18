@@ -3,9 +3,9 @@ import Head from 'next/head';
 const Meta = () => (
   <Head>
     <title>Are Liverpool winning?</title>
-    <meta name="description"  content='Find out if Liverpool are winning or not!' />
+    <meta name="description" content='Find out if Liverpool are winning or not!' />
     <meta property='og:site_name' content='areliverpoolwinning' />
-    <meta property='description'  content='Find out if Liverpool are winning or not!' />
+    <meta property='description' content='Find out if Liverpool are winning or not!' />
     <meta property='twitter:site' content='@thejamesbliss' />
     <meta property='twitter:card' content='summary_large_image' />
     <meta property='twitter:title' content='areliverpoolwinning?' />

@@ -1,20 +1,19 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-import Head from 'next/head';
 
 // helpers
 import {
   isLiverpool,
   howLong,
-} from '../../lib/helpers';
+} from '~/lib/helpers';
 
 // config
-import { liverpool_id } from '../../lib/config'
-import { GET_NEXT_MATCH } from '../../lib/queries'
+import { liverpool_id } from '~/lib/config'
+import { GET_NEXT_MATCH } from '~/lib/queries'
 
 // comps
+import Face from '~/components/global/Face';
 import Team from './Team';
-import Face from '../global/Face';
 
 // styled
 import {
@@ -26,11 +25,11 @@ import {
   SrOnly
 } from './PageStyles';
 
-const Emoji = ({ children, enable = true, ...rest }) => {
+const Emoji = ({ children, ...rest }) => {
   return (
     <Emo>
       <FaceWrapper>
-        <Face emotion={ children } { ...rest } />
+        <Face emotion={children} {...rest} />
       </FaceWrapper>
       <SrOnly>{children}</SrOnly>
     </Emo>
@@ -45,17 +44,17 @@ const Page = () => {
     }
   });
 
+  console.log({ data })
+
   if (loading) {
     return (
-      <>
-        <Wrapper><Emoji animationName='rotate' enable={false} /></Wrapper>
-      </>
+      <Wrapper><Emoji /></Wrapper>
     )
   };
 
   if (error || data.nextMatchByID.errors.length > 0) {
     return (
-      <Wrapper><Emoji enable={ false }>😵</Emoji></Wrapper>
+      <Wrapper><Emoji>😵</Emoji></Wrapper>
     );
   }
 
@@ -69,8 +68,8 @@ const Page = () => {
           <Team team={homeTeam} />
           <Team team={awayTeam} />
           <Small>
-            { kickoff !== '' && ` in ${howLong(time)}` }
-            { kickoff === '' && ' in a few moments' }
+            {kickoff !== '' && ` in ${howLong(time)}`}
+            {kickoff === '' && ' in a few moments'}
           </Small>
         </Text>
       </Wrapper>
@@ -80,13 +79,6 @@ const Page = () => {
   if (score.winner === 'DRAW') {
     return (
       <Wrapper>
-        <Head>
-          <title>😐</title>
-          <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon.ico"></link>
-          <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/neutral_face/favicon-16x16.png" />
-        </Head>
         <Emoji>😐</Emoji>
       </Wrapper>
     );
@@ -98,13 +90,6 @@ const Page = () => {
   ) {
     return (
       <Wrapper>
-        <Head>
-          <title>😁</title>
-          <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon.ico"></link>
-          <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/apple-touch-icon.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/happy_face/favicon-16x16.png" />
-        </Head>
         <Emoji>😁</Emoji>
       </Wrapper>
     );
@@ -112,13 +97,6 @@ const Page = () => {
 
   return (
     <Wrapper>
-      <Head>
-        <title>😭</title>
-        <link rel="shortcut icon" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon.ico"></link>
-        <link rel="apple-touch-icon" sizes="144x144" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="https://res.cloudinary.com/jamesbliss/image/upload/v1547821777/areliverpoolwinning/sad_face/favicon-16x16.png" />
-      </Head>
       <Emoji>😭</Emoji>
     </Wrapper>
   );

@@ -18,7 +18,7 @@ class Page extends React.Component {
       <React.Fragment>
         <GlobalStyles />
         <Meta />
-        { this.props.children }
+        {this.props.children}
       </React.Fragment>
     );
   }
