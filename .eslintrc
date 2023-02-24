@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "tailwindcss"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "next",
+    "plugin:tailwindcss/recommended"
+  ],
+  "env": {
+    "es6": true,
+    "browser": true,
+    "jest": true,
+    "node": true
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "tailwindcss/no-custom-classname": {
+      // These are the default values but feel free to customize
+      "callees": [
+        "classnames",
+        "clsx",
+        "ctl"
+      ],
+      "config": "tailwind.config.js"
+    }
+  }
+}
