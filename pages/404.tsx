@@ -6,7 +6,7 @@ export default function Custom404() {
     <div>
       <div>
         <div>
-          <Face emotion="😵" />
+          <Face emotion="😵">Error</Face>
         </div>
         <h1>Whoops, something isn&apos;t right</h1>
         <p>

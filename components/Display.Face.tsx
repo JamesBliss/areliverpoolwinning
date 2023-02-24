@@ -5,7 +5,7 @@ interface IFace {
   children: string;
 }
 
-const Face: React.FC = ({ emotion, children }: IFace): ReactElement => {
+const Face = ({ emotion, children }: IFace): ReactElement => {
   return (
     <svg
       x="0px"

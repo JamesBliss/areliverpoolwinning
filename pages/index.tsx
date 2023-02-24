@@ -100,7 +100,7 @@ const Home = ({ match }) => {
   return (
     <div className="grid h-full w-full items-center justify-items-center">
       <div className="text-[20vmin]">
-        <Face />
+        <Face>Loading</Face>
       </div>
     </div>
   );
