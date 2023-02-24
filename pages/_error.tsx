@@ -6,7 +6,7 @@ function Error({ statusCode }) {
     <div>
       <div>
         <div>
-          <Face emotion="😵" />
+          <Face emotion="😵">Error!</Face>
         </div>
         <h1>Whoops, something isn&apos;t right</h1>
         <p>Please come back in few minutes</p>
