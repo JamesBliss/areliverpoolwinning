@@ -1,5 +1,5 @@
 export const ResultType = {
-  DRAWER: "DRAWER",
+  DRAW: "DRAW",
   HOME_TEAM: "HOME_TEAM",
   AWAY_TEAM: "AWAY_TEAM",
 } as const;
@@ -130,3 +130,17 @@ export interface IDBMatches {
   };
   matches: { IDBMatch };
 }
+
+export type Match = {
+  id: number;
+  awayTeam: IDBTeam;
+  homeTeam: IDBTeam;
+  utcDate: string;
+  score: {
+    status: statusType;
+    liverpoolResult: string;
+    winner: ResultType | undefined;
+    home: number;
+    away: number;
+  };
+};

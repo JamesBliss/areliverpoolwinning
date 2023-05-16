@@ -1,0 +1,263 @@
+{
+  "filters": {
+    "dateFrom": "2023-05-16",
+    "dateTo": "2024-05-16",
+    "permission": "TIER_ONE",
+    "limit": 500
+  },
+  "resultSet": {
+    "count": 4,
+    "competitions": "CL,SA",
+    "first": "2023-05-16",
+    "last": "2023-06-04",
+    "played": 0,
+    "wins": 0,
+    "draws": 4,
+    "losses": 0
+  },
+  "matches": [
+    {
+      "area": {
+        "id": 2077,
+        "name": "Europe",
+        "code": "EUR",
+        "flag": "https://crests.football-data.org/EUR.svg"
+      },
+      "competition": {
+        "id": 2001,
+        "name": "UEFA Champions League",
+        "code": "CL",
+        "type": "CUP",
+        "emblem": "https://crests.football-data.org/CL.png"
+      },
+      "season": {
+        "id": 1491,
+        "startDate": "2022-06-21",
+        "endDate": "2023-06-10",
+        "currentMatchday": 6,
+        "winner": null
+      },
+      "id": 433194,
+      "utcDate": "2023-05-16T19:00:00Z",
+      "status": "PAUSED",
+      "matchday": null,
+      "stage": "SEMI_FINALS",
+      "group": null,
+      "lastUpdated": "2023-05-16T21:49:30Z",
+      "homeTeam": {
+        "id": 108,
+        "name": "FC Internazionale Milano",
+        "shortName": "Inter",
+        "tla": "INT",
+        "crest": "https://crests.football-data.org/108.png"
+      },
+      "awayTeam": {
+        "id": 98,
+        "name": "AC Milan",
+        "shortName": "Milan",
+        "tla": "MIL",
+        "crest": "https://crests.football-data.org/98.svg"
+      },
+      "score": {
+        "winner": "DRAW",
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": 0,
+          "away": 0
+        },
+        "halfTime": {
+          "home": 0,
+          "away": 0
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": [
+        {
+          "id": 9374,
+          "name": "Clément Turpin",
+          "type": "REFEREE",
+          "nationality": "France"
+        }
+      ]
+    },
+    {
+      "area": {
+        "id": 2114,
+        "name": "Italy",
+        "code": "ITA",
+        "flag": "https://crests.football-data.org/784.svg"
+      },
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/SA.png"
+      },
+      "season": {
+        "id": 1505,
+        "startDate": "2022-08-14",
+        "endDate": "2023-06-04",
+        "currentMatchday": 35,
+        "winner": null
+      },
+      "id": 418558,
+      "utcDate": "2023-05-21T16:00:00Z",
+      "status": "TIMED",
+      "matchday": 36,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "lastUpdated": "2023-05-15T01:32:02Z",
+      "homeTeam": {
+        "id": 113,
+        "name": "SSC Napoli",
+        "shortName": "Napoli",
+        "tla": "NAP",
+        "crest": "https://crests.football-data.org/113.svg"
+      },
+      "awayTeam": {
+        "id": 108,
+        "name": "FC Internazionale Milano",
+        "shortName": "Inter",
+        "tla": "INT",
+        "crest": "https://crests.football-data.org/108.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": []
+    },
+    {
+      "area": {
+        "id": 2114,
+        "name": "Italy",
+        "code": "ITA",
+        "flag": "https://crests.football-data.org/784.svg"
+      },
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/SA.png"
+      },
+      "season": {
+        "id": 1505,
+        "startDate": "2022-08-14",
+        "endDate": "2023-06-04",
+        "currentMatchday": 35,
+        "winner": null
+      },
+      "id": 418550,
+      "utcDate": "2023-05-28T17:30:00Z",
+      "status": "SCHEDULED",
+      "matchday": 37,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "lastUpdated": "2022-06-25T10:14:18Z",
+      "homeTeam": {
+        "id": 108,
+        "name": "FC Internazionale Milano",
+        "shortName": "Inter",
+        "tla": "INT",
+        "crest": "https://crests.football-data.org/108.png"
+      },
+      "awayTeam": {
+        "id": 102,
+        "name": "Atalanta BC",
+        "shortName": "Atalanta",
+        "tla": "ATA",
+        "crest": "https://crests.football-data.org/102.svg"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": []
+    },
+    {
+      "area": {
+        "id": 2114,
+        "name": "Italy",
+        "code": "ITA",
+        "flag": "https://crests.football-data.org/784.svg"
+      },
+      "competition": {
+        "id": 2019,
+        "name": "Serie A",
+        "code": "SA",
+        "type": "LEAGUE",
+        "emblem": "https://crests.football-data.org/SA.png"
+      },
+      "season": {
+        "id": 1505,
+        "startDate": "2022-08-14",
+        "endDate": "2023-06-04",
+        "currentMatchday": 35,
+        "winner": null
+      },
+      "id": 418535,
+      "utcDate": "2023-06-04T17:30:00Z",
+      "status": "SCHEDULED",
+      "matchday": 38,
+      "stage": "REGULAR_SEASON",
+      "group": null,
+      "lastUpdated": "2022-06-25T10:14:16Z",
+      "homeTeam": {
+        "id": 586,
+        "name": "Torino FC",
+        "shortName": "Torino",
+        "tla": "TOR",
+        "crest": "https://crests.football-data.org/586.svg"
+      },
+      "awayTeam": {
+        "id": 108,
+        "name": "FC Internazionale Milano",
+        "shortName": "Inter",
+        "tla": "INT",
+        "crest": "https://crests.football-data.org/108.png"
+      },
+      "score": {
+        "winner": null,
+        "duration": "REGULAR",
+        "fullTime": {
+          "home": null,
+          "away": null
+        },
+        "halfTime": {
+          "home": null,
+          "away": null
+        }
+      },
+      "odds": {
+        "msg": "Activate Odds-Package in User-Panel to retrieve odds."
+      },
+      "referees": []
+    }
+  ]
+}

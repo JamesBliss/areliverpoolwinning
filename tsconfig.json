@@ -23,14 +23,26 @@
       "@components/*": [
         "./components/*"
       ],
+      "@config/*": [
+        "./config/*"
+      ],
+      "@context/*": [
+        "./context/*"
+      ],
       "@helpers/*": [
         "./helpers/*"
+      ],
+      "@hooks/*": [
+        "./hooks/*"
+      ],
+      "@interfaces/*": [
+        "./interfaces/*"
       ],
       "@libs/*": [
         "./libs/*"
       ],
-      "@config/*": [
-        "./config/*"
+      "@utils/*": [
+        "./utils/*"
       ],
       "@/*": [
         "./*"
@@ -40,7 +52,8 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
