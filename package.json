@@ -4,17 +4,20 @@
   "private": true,
   "description": "Site to show if liverpool are winning",
   "license": "MIT",
+  "engines": {
+    "node": "18"
+  },
   "repository": "https://github.com/jamesbliss/areliverpoolwinning",
   "scripts": {
-    "start": "next start",
-    "dev": "next dev",
+    "dev": "next",
     "build": "next build",
-    "lint": "eslint \"**/*.js\"",
-    "lint:fix": "npm run lint -- --fix"
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@vercel/analytics": "^0.1.8",
-    "@vercel/edge-config": "^0.1.1",
+    "@vercel/edge-config": "^0.1.10",
     "clsx": "^1.2.1",
     "dotenv": "^16.0.3",
     "next": "13.4.1",
